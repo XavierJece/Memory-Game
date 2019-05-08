@@ -1,41 +1,41 @@
-package pooii.utfpr.jogo_da_memoria.Model.VO;
+package pooii.utfpr.memory_game.Model.VO;
 
-public class Estatisticas {
-    /* Atributos */
-    private Jogador player;
-    private Modalidade mod;
+public class Statistics {
+
+    private Player player;
+
+    private Modality mod;
+
     private int time;
+
     private int biggerSequence;
+
     private int beginTime;
+
     private int endTime;
-    
-    /*Construtor*/
-    public Estatisticas(){
-        
+
+    public Statistics() {
     }
-    
-    /*Metodos*/
-    void rankTen(){
-        
+
+    void rankTen() {
     }
-    void histPlayer(){
-        
+
+    void histPlayer() {
     }
-    
-    /*Gets and Setters*/
-    public Jogador getPlayer() {
+
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Jogador player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public Modalidade getMod() {
+    public Modality getMod() {
         return mod;
     }
 
-    public void setMod(Modalidade mod) {
+    public void setMod(Modality mod) {
         this.mod = mod;
     }
 
@@ -71,6 +71,6 @@ public class Estatisticas {
         this.endTime = endTime;
     }
 
-    
-    
+    void histPlayer(Player player) {
+    }
 }

@@ -1,34 +1,35 @@
-package pooii.utfpr.jogo_da_memoria.Model.VO;
+package pooii.utfpr.memory_game.Model.VO;
 
 import java.time.LocalDate;
 
-public class Jogador {
-    /* Atributos */
+public class Player {
+
     private int id;
+
     private String email;
+
     private String pass;
+
     private String nickName;
+
     private LocalDate dateRegister;
-    
-    /* Construtor */
-    public Jogador(int id, String email, String pass, String nickName, LocalDate dateRegister) {
+
+    public Player(int id, String email, String pass, String nickName, LocalDate dateRegister) {
         this.id = id;
         this.email = email;
         this.pass = pass;
         this.nickName = nickName;
         this.dateRegister = dateRegister;
     }
-    
-    public Jogador(String name){
+
+    public Player(String name) {
         this.nickName = name;
     }
-    
-    /* Metodos */
+
     public String updaterNickName(String newName) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    /* Gets and Setts*/
+
     public int getId() {
         return id;
     }
@@ -68,6 +69,4 @@ public class Jogador {
     public void setDateRegister(LocalDate dateRegister) {
         this.dateRegister = dateRegister;
     }
-    
-    
 }
