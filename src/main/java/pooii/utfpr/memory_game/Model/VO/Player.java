@@ -1,10 +1,20 @@
 package pooii.utfpr.memory_game.Model.VO;
 
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity // Cria uma tabela no meu Banco de Dadoss
+
+//@Table muda o nome da tabela
+//@Table(name = "tb_categoria")
 public class Player {
-
-    private int id;
+    @Id // tipo deve ser long
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id
+    private int id_player;
 
     private String email;
 
@@ -13,9 +23,11 @@ public class Player {
     private String nickName;
 
     private LocalDate dateRegister;
+  
+    
 
     public Player(int id, String email, String pass, String nickName, LocalDate dateRegister) {
-        this.id = id;
+        this.id_player = id;
         this.email = email;
         this.pass = pass;
         this.nickName = nickName;
@@ -31,11 +43,11 @@ public class Player {
     }
 
     public int getId() {
-        return id;
+        return id_player;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_player = id;
     }
 
     public String getEmail() {
