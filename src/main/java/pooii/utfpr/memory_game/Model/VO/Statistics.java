@@ -1,9 +1,24 @@
 package pooii.utfpr.memory_game.Model.VO;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Statistics {
-
+    
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_player")
     private Player player;
-
+    
+    @ManyToOne @JoinColumn(name = "id_modality")
     private Modality mod;
 
     private int time;
