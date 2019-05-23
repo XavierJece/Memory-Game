@@ -8,18 +8,22 @@ package pooii.utfpr.memory_game.View;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import pooii.utfpr.memory_game.Model.DAO.connectionHibernate;
 import pooii.utfpr.memory_game.Model.VO.MatchGame;
 import pooii.utfpr.memory_game.Model.VO.Modality;
 import pooii.utfpr.memory_game.Model.VO.Player;
 
 public class Main_test {
      public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOII.utfpr_Memory-Game_jar_1.0-SNAPSHOTPU");
-        EntityManager manager = factory.createEntityManager();
+        //EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOII.utfpr_Memory-Game_jar_1.0-SNAPSHOTPU");  isso esta sendo feito agora la no DAO ConexaoHibernate
+        //EntityManager manager = factory.createEntityManager();
+       
+        EntityManager manager = connectionHibernate.getInstance(); // Agora podemos varios dois manager no mesmo local da memoria
+        EntityManager manager2 = connectionHibernate.getInstance();
         
         //MatchGame match = new MatchGame();
         Modality modality = new Modality("Wagnao");
-        Player player = new Player("jece");
+        Player player = new Player("jose");
         
         //match.createPlayer(player);
         
@@ -36,7 +40,8 @@ public class Main_test {
         //Query query = manager.createQuery("SELECT c FROM Player c"); 
         //List<Player> jogadores = query.getResultList();
         
-        manager.close();
-        factory.close();
+        connectionHibernate.close();
+       // manager.close();
+       // factory.close();
      }
 }
