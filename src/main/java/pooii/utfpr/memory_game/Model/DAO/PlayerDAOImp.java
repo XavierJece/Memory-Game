@@ -12,15 +12,18 @@ public class PlayerDAOImp implements PlayerDAO {
         manager = connectionHibernate.getInstance();
     }
     
+    @Override
     public void save(Player player) {
-        manager.getTransaction().begin(); //Adiciona na tabela
-        manager.persist(player);
+        manager.getTransaction().begin(); 
+        manager.persist(player); //Adiciona na tabela
         manager.getTransaction().commit(); //Se nao tiver o commit, não vai persistir o obj no banco, somente no programa
     }
 
     @Override
     public void delete(Player player) {
+        manager.getTransaction().begin(); 
         manager.remove(player); //Remover da table
+        manager.getTransaction().commit(); //Se nao tiver o commit, não vai persistir o obj no banco, somente no programa
     }
 
     @Override
@@ -38,6 +41,8 @@ public class PlayerDAOImp implements PlayerDAO {
 
     @Override
     public void update(Player player) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        manager.getTransaction().begin(); //Adiciona na tabela
+        manager.merge(player);
+        manager.getTransaction().commit(); //Se nao tiver o commit, não vai persistir o obj no banco, somente no programa
     }
 }

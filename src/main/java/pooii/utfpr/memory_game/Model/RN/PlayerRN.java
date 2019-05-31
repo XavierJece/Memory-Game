@@ -38,6 +38,6 @@ public class PlayerRN {
     }
     
     public void update(Player player){
-        
+        playerDAO.update(player);
     }
 }
