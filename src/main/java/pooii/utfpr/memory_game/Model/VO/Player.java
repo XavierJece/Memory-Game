@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Player {
     @Id // tipo deve ser long
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id
-    private int id_player;
+    private Long id_player;
 
     private String email;
 
@@ -26,7 +26,7 @@ public class Player {
   
     
 
-    public Player(int id, String email, String pass, String nickName, LocalDate dateRegister) {
+    public Player(Long id, String email, String pass, String nickName, LocalDate dateRegister) {
         this.id_player = id;
         this.email = email;
         this.pass = pass;
@@ -37,16 +37,20 @@ public class Player {
     public Player(String name) {
         this.nickName = name;
     }
+    
+     public Player() { //Precisamos de um construtor vazio para funcionar a busca do hibernate
+       
+    }
 
     public String updaterNickName(String newName) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public int getId() {
+    public Long getId() {
         return id_player;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id_player = id;
     }
 
