@@ -13,14 +13,14 @@ import java.util.List;
  */
 public interface GenericDAO<T> {
     
-    void salvar(T objeto);
+    void save(T objeto);
     
-    T listUm(String pkName, int pkValue, Class clazz);
+    T listOne(String pkName, int pkValue, Class clazz);
     
-    List listTodos(Class clazz);
+    List listAll(Class clazz);
     
-    void atualizar(T objeto);
+    void update(T objeto);
     
-    void deletar(T objeto);
+    void delete(T objeto);
     
 }

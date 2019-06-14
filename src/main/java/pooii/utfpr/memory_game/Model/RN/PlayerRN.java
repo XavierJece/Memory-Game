@@ -10,10 +10,7 @@ import pooii.utfpr.memory_game.Model.DAO.PlayerDAOImp;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.DAO.PlayerDAO;
 
-/**
- *
- * @author a1980009
- */
+
 public class PlayerRN {
     private PlayerDAO playerDAO;
     

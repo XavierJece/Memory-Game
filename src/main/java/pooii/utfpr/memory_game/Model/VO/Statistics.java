@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import org.eclipse.persistence.annotations.TimeOfDay;
 
 @Entity
 public class Statistics {
@@ -20,13 +21,15 @@ public class Statistics {
     
     @ManyToOne @JoinColumn(name = "id_modality")
     private Modality mod;
-
+    
+    
     private int time;
 
     private int biggerSequence;
 
     private int beginTime;
-
+    
+    
     private int endTime;
 
     public Statistics() {

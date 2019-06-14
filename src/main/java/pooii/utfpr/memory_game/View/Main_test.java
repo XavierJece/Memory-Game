@@ -5,6 +5,7 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import com.sun.org.glassfish.external.statistics.Statistic;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,6 +16,7 @@ import pooii.utfpr.memory_game.Model.RN.PlayerRN;
 import pooii.utfpr.memory_game.Model.VO.MatchGame;
 import pooii.utfpr.memory_game.Model.VO.Modality;
 import pooii.utfpr.memory_game.Model.VO.Player;
+import pooii.utfpr.memory_game.Model.VO.Statistics;
 
 public class Main_test {
      public static void main(String[] args) {
@@ -24,15 +26,28 @@ public class Main_test {
        // EntityManager manager = connectionHibernate.getInstance(); // Agora podemos varios dois manager no mesmo local da memoria
         //EntityManager manager2 = connectionHibernate.getInstance();
         
-         PlayerRN playerRN= new PlayerRN();
+        PlayerRN playerRN= new PlayerRN();
         
         //MatchGame match = new MatchGame();
         Modality modality = new Modality("Wagnao");
+        modality.setId_modality(2);
         Player player = new Player("Giuvane");
+        Statistics sta = new Statistics();
+       
         
+        GenericDAO<Statistics> genericDAO2 = new GenericDAOImpl<Statistics>();
         GenericDAO<Player> genericDAO = new GenericDAOImpl<Player>();
         
-        genericDAO.salvar(player);
+        sta.setPlayer(player);
+        sta.setBiggerSequence(10);
+        sta.setMod(modality);
+        sta.setBeginTime(0);
+        sta.setEndTime(10);
+        sta.setTime(10);
+        
+        genericDAO2.save(sta);
+       //genericDAO.save(player);
+        
         //playerRN.save(player);
         
         
