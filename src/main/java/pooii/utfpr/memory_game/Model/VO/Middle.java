@@ -4,11 +4,10 @@ public class Middle implements iModality {
 
     private String name;
 
-    public void play() {
-    }
+    public void play() {}
 
     @Override
     public void newGame(String mode, int quantityPlayer) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
