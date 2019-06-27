@@ -5,16 +5,14 @@
  */
 package pooii.utfpr.memory_game.View;
 
-import com.sun.org.glassfish.external.statistics.Statistic;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
+import model.VO.modalidades.ModalityEnum;
+import pooii.utfpr.memory_game.Control.MathGame;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.DAO.connectionHibernate;
 import pooii.utfpr.memory_game.Model.RN.PlayerRN;
-import pooii.utfpr.memory_game.Model.VO.MatchGame;
-import pooii.utfpr.memory_game.Model.VO.Modality;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.Statistics;
 
@@ -26,33 +24,30 @@ public class Main_test {
        // EntityManager manager = connectionHibernate.getInstance(); // Agora podemos varios dois manager no mesmo local da memoria
         //EntityManager manager2 = connectionHibernate.getInstance();
         
-        PlayerRN playerRN= new PlayerRN();
+        //PlayerRN playerRN= new PlayerRN();
         
         //MatchGame match = new MatchGame();
-        Modality modality = new Modality("Wagnao");
-        modality.setId_modality(2);
-        Player player = new Player("Giuvane");
-        Statistics sta = new Statistics();
-       
+        Player player1 = new Player("Giuvane");
+        Player player2 = new Player("Goku");
+        Player player3 = new Player("Vidotto");
         
-        GenericDAO<Statistics> genericDAO2 = new GenericDAOImpl<Statistics>();
-        GenericDAO<Player> genericDAO = new GenericDAOImpl<Player>();
+        List<Player> players = new ArrayList<Player>();
         
-        sta.setPlayer(player);
-        sta.setBiggerSequence(10);
-        sta.setMod(modality);
-        sta.setBeginTime(0);
-        sta.setEndTime(10);
-        sta.setTime(10);
         
-        genericDAO2.save(sta);
-       //genericDAO.save(player);
+        MathGame mg = new MathGame(ModalityEnum.EASY, players);
+        //Statistics sta = new Statistics();
+
+        GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
+        
+        GenericDAO<MathGame> genericDAOMathGame = new GenericDAOImpl<MathGame>();
+     
+        
+        //genericDAOPlayer.save(player1);
+
+        genericDAOMathGame.save(mg);
         
         //playerRN.save(player);
-        
-        
-        //match.createPlayer(player);
-        
+
         
         // Esta dentro da classe PlayerDAOImp
        // manager.getTransaction().begin(); //Adiciona na tabela
@@ -60,8 +55,8 @@ public class Main_test {
         //manager.persist(modality);
         //manager.getTransaction().commit(); //Se nao tiver o commit, não vai persistir o obj no banco, somente no programa
         
-       player = playerRN.findOne(3L);
-       System.out.println(player.getNickName());
+       //player = playerRN.findOne(3L);
+       //System.out.println(player.getNickName());
         //Player jogadorRecupera = manager.find(Player.class, 1); //Acho  
         //Player jogadorRecupera2 = manager.getReference(Player.class, 1); // 1 = pk
         

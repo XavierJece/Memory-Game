@@ -3,11 +3,12 @@
   <persistence-unit name="POOII.utfpr_Memory-Game_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projeto_poo"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projeto_poo?createDatabaseIfNotExist=true"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="utfprsh"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
       <property name="hibernate.show_sql" value="true"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>

@@ -1,13 +1,13 @@
 package pooii.utfpr.memory_game.Model.VO;
 
+import javafx.stage.Modality;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import pooii.utfpr.memory_game.Model.VO.modalidades.Modallity;
 import javax.persistence.ManyToOne;
-import org.eclipse.persistence.annotations.TimeOfDay;
 
 @Entity
 public class Statistics {
@@ -20,7 +20,7 @@ public class Statistics {
     private Player player;
     
     @ManyToOne @JoinColumn(name = "id_modality")
-    private Modality mod;
+    private Modallity mod;
     
     
     private int time;
@@ -47,14 +47,6 @@ public class Statistics {
 
     public void setPlayer(Player player) {
         this.player = player;
-    }
-
-    public Modality getMod() {
-        return mod;
-    }
-
-    public void setMod(Modality mod) {
-        this.mod = mod;
     }
 
     public int getTime() {
