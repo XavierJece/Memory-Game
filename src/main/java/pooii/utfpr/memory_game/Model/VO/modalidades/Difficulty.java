@@ -5,32 +5,35 @@
  */
 package pooii.utfpr.memory_game.Model.VO.modalidades;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import pooii.utfpr.memory_game.Control.MatchGame;
 
 /**
  *
  * @author Professor Xavier
  */
 
-@Entity
-public class Modallity {
+//@Entity
+    public class Difficulty {
     
     //Atributos
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id  
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id  
     private Long codigo;
     
-    @Column(unique = true)
+//  @Column(unique = true)
     String name;
     int quantityPiece;
     String description;
     
     //Constructor
-    
     
     //My fuctions
     public void playGame(){

@@ -9,7 +9,7 @@ package pooii.utfpr.memory_game.Model.VO.modalidades;
  *
  * @author Jece Xavier
  */
-public class Easy extends Modallity{
+public class Easy extends Difficulty{
     
     
     //Constructor

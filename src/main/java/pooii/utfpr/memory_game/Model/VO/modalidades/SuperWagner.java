@@ -9,7 +9,7 @@ package pooii.utfpr.memory_game.Model.VO.modalidades;
  *
  * @author Jece Xavier
  */
-public class SuperWagner extends Modallity{
+public class SuperWagner extends Difficulty{
     
     //Atributos
     private int time;

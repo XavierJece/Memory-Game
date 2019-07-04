@@ -33,7 +33,15 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
     @Override
     public T listOne(String pkName, int pkValue, Class clazz) {
-        String jpql = "SELECT t FROM " + clazz.getTypeName() + "t WHERE t." + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
+        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE t." + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
+        Query query = this.manager.createQuery(jpql);
+        Object obj = query.getSingleResult();
+        return (T) obj;
+    }
+    
+    @Override
+    public T listOne(String pkName, String pkValue, Class clazz) {
+        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE t." + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
         Query query = this.manager.createQuery(jpql);
         Object obj = query.getSingleResult();
         return (T) obj;

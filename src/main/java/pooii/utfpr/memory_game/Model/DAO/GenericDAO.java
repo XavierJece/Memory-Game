@@ -17,6 +17,8 @@ public interface GenericDAO<T> {
     
     T listOne(String pkName, int pkValue, Class clazz);
     
+    T listOne(String pkName, String pkValue, Class clazz);
+    
     List listAll(Class clazz);
     
     void update(T objeto);

@@ -9,7 +9,7 @@ package pooii.utfpr.memory_game.Model.VO.modalidades;
  *
  * @author Jece Xavier
  */
-public class ForFreshmen extends Modallity{
+public class ForFreshmen extends Difficulty{
 
     public ForFreshmen() {
         this.name = "Para Calouros";

@@ -7,14 +7,15 @@ package pooii.utfpr.memory_game.View;
 
 import java.util.ArrayList;
 import java.util.List;
-import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
-import pooii.utfpr.memory_game.Control.MathGame;
+import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Control.MatchGame;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.DAO.connectionHibernate;
 import pooii.utfpr.memory_game.Model.RN.PlayerRN;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.Statistics;
+import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 
 public class Main_test {
      public static void main(String[] args) {
@@ -41,20 +42,20 @@ public class Main_test {
         players2.add(player4);
         players2.add(player1);
         
-        MathGame mg1 = new MathGame(ModalityEnum.EASY, players2);
+        MatchGame mg1 = new MatchGame(DifficultyEnum.EASY, players2);
         
-        MathGame mg2 = new MathGame(ModalityEnum.FORFRESHMEN, players);
+        MatchGame mg2 = new MatchGame(DifficultyEnum.FORFRESHMEN, players);
         
         players.add(player4);
         
-        MathGame mg3 = new MathGame(ModalityEnum.EASY, players);
+        MatchGame mg3 = new MatchGame(DifficultyEnum.EASY, players);
         
         
         //Statistics sta = new Statistics();
 
         GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
         
-        GenericDAO<MathGame> genericDAOMathGame = new GenericDAOImpl<MathGame>();
+        GenericDAO<MatchGame> genericDAOMathGame = new GenericDAOImpl<MatchGame>();
      
         
 //        genericDAOPlayer.save(player1);
@@ -66,7 +67,11 @@ public class Main_test {
         //genericDAOMathGame.delete(mg1);
         genericDAOMathGame.save(mg2);
         //playerRN.save(player);
-        //genericDAOMathGame.save(mg3);
+        genericDAOMathGame.save(mg3);
+        
+        
+        
+        
 
         
         // Esta dentro da classe PlayerDAOImp

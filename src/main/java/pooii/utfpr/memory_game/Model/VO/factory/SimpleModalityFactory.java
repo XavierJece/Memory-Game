@@ -5,7 +5,13 @@
  */
 package pooii.utfpr.memory_game.Model.VO.factory;
 
-import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
+import com.sun.prism.impl.BufferUtil;
+import java.util.ArrayList;
+import java.util.List;
+import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
+import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.*;
 
 /**
@@ -14,9 +20,13 @@ import pooii.utfpr.memory_game.Model.VO.modalidades.*;
  */
 public class SimpleModalityFactory {
     
-    public static Modallity createModality(ModalityEnum nome)
+    public static Difficulty createModality(DifficultyEnum nome)
     {
-        Modallity modality = null;
+        int flag = 1;
+        Difficulty modality = null;
+        /*GenericDAO<Modallity> modaDAO = new GenericDAOImpl<>();
+        List<Modallity> listaModal = null;
+        System.out.println("tamanho lista " + (modaDAO.listAll(Difficulty.class).size()));*/
         
         if (nome.getModality().equals("FORFRESHMEN")){
             
@@ -24,8 +34,14 @@ public class SimpleModalityFactory {
             
         }
         if (nome.getModality().equals("EASY")){
-            
-            modality = new Easy();
+           /*for(int i = 0; i < listaModal.size(); i++){
+                if(listaModal.get(i).getName().equals("Easy")){
+                    flag = 0;
+                }
+            }*/
+           if(flag == 1){
+             modality = new Easy();
+           }
             
         }
         if(nome.getModality().equals("MIDDLE")){

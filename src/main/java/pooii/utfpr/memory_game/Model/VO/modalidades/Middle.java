@@ -9,7 +9,7 @@ package pooii.utfpr.memory_game.Model.VO.modalidades;
  *
  * @author Jece Xavier
  */
-public class Middle extends Modallity{
+public class Middle extends Difficulty{
     
     //Atributos
     private int time;

@@ -21,8 +21,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.OneToOne;
-import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
-import pooii.utfpr.memory_game.Model.VO.modalidades.Modallity;
+import javax.persistence.Transient;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
+import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
 
@@ -34,7 +37,7 @@ import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
  */
 
 @Entity
-public class MathGame {
+public class MatchGame {
     
     //Atributos
     @Id
@@ -44,8 +47,9 @@ public class MathGame {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Player> gamers;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Modallity modallity;
+    //@OneToOne(cascade = CascadeType.PERSIST)
+    @Transient
+    private Difficulty modallity;
     
     private int biggerSequence; 
     private LocalDate timeBegin;
@@ -53,17 +57,17 @@ public class MathGame {
     
     //Constructor
     
-    public MathGame(){
+    public MatchGame(){
     }
     
     /**Construtor para instanciar a modalidade da partidade que está sendo iniciada. Recomendado quanto terá apenas um jogador na partida.
     * @author Professor Xavier
     * @author Matheus Ferreira
     * @author Lucas Vidotto
-    * @param mode ModalityEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
-    * @return Modallity - instancia de uma modalidade expecifica
+    * @param mode DifficultyEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
+    * @return Difficulty - instancia de uma modalidade expecifica
     */
-    public MathGame(ModalityEnum mode) {
+    public MatchGame(DifficultyEnum mode) {
        this.modallity = SimpleModalityFactory.createModality(mode);
         
     }
@@ -72,16 +76,21 @@ public class MathGame {
     * @author Professor Xavier
     * @author Matheus Ferreira
     * @author Lucas Vidotto
-    * @param mode ModalityEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
+    * @param mode DifficultyEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
     * @param gamers List<String> - Lista dos nomes (nikName) dos jogadores.
-    * @return Modallity - instancia de uma modalidade expecifica
+    * @return Difficulty - instancia de uma modalidade expecifica
     */
-    public MathGame(ModalityEnum mode, List<Player> gamers) {
+    public MatchGame(DifficultyEnum mode, List<Player> gamers) {
         
         //Caso a lista estiver com também 0, como fazer para não ser criada?
         
         this.gamers = gamers;
-        this.modallity = SimpleModalityFactory.createModality(mode);
+        
+//        GenericDAO<Modallity> modaDAO = new GenericDAOImpl<>();
+//        List<Modallity> listaModal = null;
+//        System.out.println("tamanho lista " + (modaDAO.listOne("name", "", Difficulty.class)));
+        
+        this.modallity = SimpleModalityFactory.createModality(mode);   
         
     }
     
@@ -120,11 +129,11 @@ public class MathGame {
         this.gamers = gamers;
     }
 
-    public Modallity getModallity() {
+    public Difficulty getModallity() {
         return modallity;
     }
 
-    public void setModallity(Modallity modallity) {
+    public void setModallity(Difficulty modallity) {
         this.modallity = modallity;
     }
 

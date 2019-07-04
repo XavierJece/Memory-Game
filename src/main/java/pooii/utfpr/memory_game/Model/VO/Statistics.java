@@ -9,9 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import pooii.utfpr.memory_game.Model.VO.modalidades.Modallity;
+import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 @Entity
 public class Statistics {
@@ -23,8 +24,9 @@ public class Statistics {
     @JoinColumn(name = "id_player")
     private Player player;
     
-    @ManyToOne @JoinColumn(name = "id_modality")
-    private Modallity mod;
+//    @ManyToOne @JoinColumn(name = "id_modality")
+    @Transient
+    private Difficulty mod;
 
     private int biggerSequence;
 

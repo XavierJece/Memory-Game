@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import pooii.utfpr.memory_game.Control.MathGame;
+import pooii.utfpr.memory_game.Control.MatchGame;
 
 @Entity // Cria uma tabela no meu Banco de Dadoss
 
@@ -31,7 +31,7 @@ public class Player {
     
 //    @ManyToOne(cascade = CascadeType.PERSIST)
 //    @JoinColumn(name = "matchGame", nullable = true, foreignKey = @ForeignKey(name = "matchGame_fk"))
-//    private MathGame matchGame;
+//    private MatchGame matchGame;
 
     public Player(Long id, String email, String pass, String nickName, LocalDate dateRegister) {
         this.id_player = id;
