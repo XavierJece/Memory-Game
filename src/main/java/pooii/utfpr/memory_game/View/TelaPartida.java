@@ -43,7 +43,7 @@ public class TelaPartida extends JFrame{
         ActionListener acoesBtn = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controle.alterarSelecao(((JButton) e.getSource()), EstadoBotoes.SELECIONADO);
+                controle.executarAcaoBtn(((JButton) e.getSource()), EstadoBotoes.SELECIONADO);
                 
             }
             

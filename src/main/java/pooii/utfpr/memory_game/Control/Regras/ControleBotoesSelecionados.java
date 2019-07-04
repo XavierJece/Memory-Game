@@ -27,16 +27,31 @@ public class ControleBotoesSelecionados {
     }
    
    /*Funções*/
+    public void executarAcaoBtn(JButton btn, EstadoBotoes estado){
+        this.alterarSelecao(btn, estado);
+        
+        if (this.isTodasSelecionadas()) {
+            this.alterarEstadoTodosBtn(EstadoBotoes.ENCONTRADO);
+        }else{
+            this.alterarVisualizacaoBtn(btn);
+        }
+    }
+    
+    private void alterarEstadoTodosBtn(EstadoBotoes estado){
+        for(JButton btn: this.referenciaBotoes.keySet()){
+            this.alterarSelecao(btn, estado);
+            this.alterarVisualizacaoBtn(btn);
+        }
+    }
+    
    public void addBtn(JButton btn){
        this.referenciaBotoes.put(btn, EstadoBotoes.OCULTO);
    }
    
    public void alterarSelecao(JButton btn, EstadoBotoes selecionado){
        this.referenciaBotoes.put(btn, selecionado);
-       EstadoBotoes b = this.referenciaBotoes.get(btn);
-       b = selecionado ;
        
-       alterarVisualizacaoBtn(btn);
+       
    }
    
    private void alterarVisualizacaoBtn(JButton btn){
@@ -60,9 +75,7 @@ public class ControleBotoesSelecionados {
    
    
    public void zerarSelecoes(){
-       for(EstadoBotoes b: this.referenciaBotoes.values()){
-           b = EstadoBotoes.OCULTO;
-       }
+       this.alterarEstadoTodosBtn(EstadoBotoes.OCULTO);
    }
    
    public Boolean isTodasSelecionadas(){
