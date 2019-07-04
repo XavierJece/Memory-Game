@@ -67,7 +67,7 @@ public class ControleBotoesSelecionados {
                btn.setIcon(this.piece.createImg(PieceEnum.IMAGEM_COSTAS));
            break;
            case SELECIONADO: //Exibir
-//               btn.setEnabled(Boolean.FALSE);
+//             btn.setEnabled(Boolean.FALSE);
                btn.setIcon(this.piece.createImg(this.imgFrenteBotao));
            break;
            case ENCONTRADO:
