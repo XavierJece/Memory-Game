@@ -19,28 +19,28 @@ public class Piece {
 
     
     /*Minhas Funções */
-    public static ImageIcon createImg(String nameImage){
+    public ImageIcon createImg(String nameImage){
         
         String pathRaiz = "C:\\Users\\Jece Xavier\\Documents\\NetBeansProjects\\Memory-Game\\src\\main\\resources\\img\\";
         int widthButton = 160;
         int heightButton = 150;
         
         
-        ImageIcon img = new ImageIcon(pathRaiz + nameImage + ".jpg");
+        ImageIcon img = new ImageIcon(getClass().getResource("/img/" + nameImage + ".jpg")); 
         Image image = img.getImage().getScaledInstance(widthButton, heightButton, Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(image);
         
         return imageIcon;
     }
     
-    public static ImageIcon createImg(PieceEnum nameImage){
+    public ImageIcon createImg(PieceEnum nameImage){
         
-        String pathRaiz = "C:\\Users\\Jece Xavier\\Documents\\NetBeansProjects\\Memory-Game\\src\\main\\resources\\img\\";
+        //String pathRaiz = "C:\\Users\\Jece Xavier\\Documents\\NetBeansProjects\\Memory-Game\\src\\main\\resources\\img\\";
         int widthButton = 160;
-        int heightButton = 150;
+        int heightButton = 150;//pathRaiz + nameImage.getNameImg() + ".jpg"
         
         
-        ImageIcon img = new ImageIcon(pathRaiz + nameImage.getNameImg() + ".jpg");
+        ImageIcon img = new ImageIcon(getClass().getResource("/img/" + nameImage.getNameImg() + ".jpg")); 
         Image image = img.getImage().getScaledInstance(widthButton, heightButton, Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(image);
         

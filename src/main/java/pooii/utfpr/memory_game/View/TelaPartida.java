@@ -39,6 +39,9 @@ public class TelaPartida extends JFrame{
     public TelaPartida(String NomeTela){
         super("Partida " + NomeTela);
         
+        /*criando icone*/
+        Piece piece = new Piece();
+        
         /*Criando ação no botão*/
         ActionListener acoesBtn = new ActionListener() {
             @Override
@@ -60,11 +63,11 @@ public class TelaPartida extends JFrame{
         
         btn1 = new JButton("Botão 1");
         btn1.setBounds(20, 20, this.widthButton, this.heightButton);
-        btn1.setIcon(Piece.createImg(PieceEnum.IMAGEM_COSTAS));
+        btn1.setIcon(piece.createImg(PieceEnum.IMAGEM_COSTAS));
         
         btn2 = new JButton("Botão 2");
         btn2.setBounds(190, 20, this.widthButton, this.heightButton);
-        btn2.setIcon(Piece.createImg(PieceEnum.IMAGEM_COSTAS));
+        btn2.setIcon(piece.createImg(PieceEnum.IMAGEM_COSTAS));
         
         /*adicinando acao de Click*/
         btn1.addActionListener(acoesBtn);

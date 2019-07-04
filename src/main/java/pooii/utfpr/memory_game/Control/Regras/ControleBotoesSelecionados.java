@@ -20,10 +20,14 @@ public class ControleBotoesSelecionados {
     
    private String imgFrenteBotao;
    private Map<JButton, EstadoBotoes> referenciaBotoes;
+   
+   /*Atributo de controle*/
+   private Piece piece;
 
    /*Contrutor*/
     public ControleBotoesSelecionados() {
         this.referenciaBotoes = new HashMap<>();
+        this.piece = new Piece();
     }
    
    /*Funções*/
@@ -60,14 +64,14 @@ public class ControleBotoesSelecionados {
        switch(selecionado){
            case OCULTO: //Não exibir nada
                btn.setBackground(null);
-               btn.setIcon(Piece.createImg(PieceEnum.IMAGEM_COSTAS));
+               btn.setIcon(this.piece.createImg(PieceEnum.IMAGEM_COSTAS));
            break;
            case SELECIONADO: //Exibir
 //               btn.setEnabled(Boolean.FALSE);
-               btn.setIcon(Piece.createImg(this.imgFrenteBotao));
+               btn.setIcon(this.piece.createImg(this.imgFrenteBotao));
            break;
            case ENCONTRADO:
-               btn.setIcon(Piece.createImg(this.imgFrenteBotao));
+               btn.setIcon(this.piece.createImg(this.imgFrenteBotao));
                btn.setEnabled(Boolean.FALSE);
            break;
        }
