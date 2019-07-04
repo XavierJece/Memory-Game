@@ -39,6 +39,16 @@ public class TelaPartida extends JFrame{
     public TelaPartida(String NomeTela){
         super("Partida " + NomeTela);
         
+        /*Criando ação no botão*/
+        ActionListener acoesBtn = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controle.alterarSelecao(((JButton) e.getSource()), EstadoBotoes.SELECIONADO);
+                
+            }
+            
+        };
+        
         /*Criando o controle dos botões*/
         this.controle = new ControleBotoesSelecionados();
         this.controle.setImgFrenteBotao(PieceEnum.IMAGEM_27);
@@ -57,16 +67,8 @@ public class TelaPartida extends JFrame{
         btn2.setIcon(Piece.createImg(PieceEnum.IMAGEM_COSTAS));
         
         /*adicinando acao de Click*/
-        btn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ((JButton) e.getSource()).setIcon(Piece.createImg(controle.getImgFrenteBotao()));
-                controle.alterarSelecao(((JButton) e.getSource()), EstadoBotoes.SELECIONADO);
-                
-            }
-            
-        });
-        
+        btn1.addActionListener(acoesBtn);
+        btn2.addActionListener(acoesBtn);
         
         /*Adicionando no painel*/
         painel.add(btn1);

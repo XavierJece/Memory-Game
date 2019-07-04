@@ -8,6 +8,7 @@ package pooii.utfpr.memory_game.Control.Regras;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
+import pooii.utfpr.memory_game.Model.VO.Piece;
 import pooii.utfpr.memory_game.Model.VO.PieceEnum;
 
 /**
@@ -31,9 +32,32 @@ public class ControleBotoesSelecionados {
    }
    
    public void alterarSelecao(JButton btn, EstadoBotoes selecionado){
+       this.referenciaBotoes.put(btn, selecionado);
        EstadoBotoes b = this.referenciaBotoes.get(btn);
        b = selecionado ;
+       
+       alterarVisualizacaoBtn(btn);
    }
+   
+   private void alterarVisualizacaoBtn(JButton btn){
+       EstadoBotoes selecionado = this.referenciaBotoes.get(btn);
+       
+       switch(selecionado){
+           case OCULTO: //Não exibir nada
+               btn.setBackground(null);
+               btn.setIcon(Piece.createImg(PieceEnum.IMAGEM_COSTAS));
+           break;
+           case SELECIONADO: //Exibir
+//               btn.setEnabled(Boolean.FALSE);
+               btn.setIcon(Piece.createImg(this.imgFrenteBotao));
+           break;
+           case ENCONTRADO:
+               btn.setIcon(Piece.createImg(this.imgFrenteBotao));
+               btn.setEnabled(Boolean.FALSE);
+           break;
+       }
+   }
+   
    
    public void zerarSelecoes(){
        for(EstadoBotoes b: this.referenciaBotoes.values()){
