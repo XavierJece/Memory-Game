@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import pooii.utfpr.memory_game.Control.Regras.ControleBotoesSelecionados;
+import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
 import pooii.utfpr.memory_game.Model.VO.Piece;
 import pooii.utfpr.memory_game.Model.VO.PieceEnum;
 
@@ -60,7 +61,7 @@ public class TelaPartida extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 ((JButton) e.getSource()).setIcon(Piece.createImg(controle.getImgFrenteBotao()));
-                controle.alterarSelecao(((JButton) e.getSource()), Boolean.TRUE);
+                controle.alterarSelecao(((JButton) e.getSource()), EstadoBotoes.SELECIONADO);
                 
             }
             

@@ -18,7 +18,7 @@ public class ControleBotoesSelecionados {
     
     
    private String imgFrenteBotao;
-   private Map<JButton, Boolean> referenciaBotoes;
+   private Map<JButton, EstadoBotoes> referenciaBotoes;
 
    /*Contrutor*/
     public ControleBotoesSelecionados() {
@@ -27,23 +27,23 @@ public class ControleBotoesSelecionados {
    
    /*Funções*/
    public void addBtn(JButton btn){
-       this.referenciaBotoes.put(btn, Boolean.FALSE);
+       this.referenciaBotoes.put(btn, EstadoBotoes.OCULTO);
    }
    
-   public void alterarSelecao(JButton btn, Boolean selecionado){
-       Boolean b = this.referenciaBotoes.get(btn);
+   public void alterarSelecao(JButton btn, EstadoBotoes selecionado){
+       EstadoBotoes b = this.referenciaBotoes.get(btn);
        b = selecionado ;
    }
    
    public void zerarSelecoes(){
-       for(Boolean b: this.referenciaBotoes.values()){
-           b = Boolean.FALSE;
+       for(EstadoBotoes b: this.referenciaBotoes.values()){
+           b = EstadoBotoes.OCULTO;
        }
    }
    
    public Boolean isTodasSelecionadas(){
-       for(Boolean b: this.referenciaBotoes.values()){
-           if(!b){
+       for(EstadoBotoes b: this.referenciaBotoes.values()){
+           if(b != EstadoBotoes.SELECIONADO){
                //Não foram todos selecionados
                return false;
            }
@@ -67,11 +67,11 @@ public class ControleBotoesSelecionados {
         this.imgFrenteBotao = img.getNameImg();
     }
 
-    public Map<JButton, Boolean> getReferenciaBotoes() {
+    public Map<JButton, EstadoBotoes> getReferenciaBotoes() {
         return referenciaBotoes;
     }
 
-    public void setReferenciaBotoes(Map<JButton, Boolean> referenciaBotoes) {
+    public void setReferenciaBotoes(Map<JButton, EstadoBotoes> referenciaBotoes) {
         this.referenciaBotoes = referenciaBotoes;
     }
    
