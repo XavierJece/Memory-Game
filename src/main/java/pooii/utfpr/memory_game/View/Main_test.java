@@ -7,7 +7,7 @@ package pooii.utfpr.memory_game.View;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.VO.modalidades.ModalityEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Control.MathGame;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
@@ -30,11 +30,26 @@ public class Main_test {
         Player player1 = new Player("Giuvane");
         Player player2 = new Player("Goku");
         Player player3 = new Player("Vidotto");
-        
+        Player player4 = new Player("Jecé");
+                
         List<Player> players = new ArrayList<Player>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        
+        List<Player> players2 = new ArrayList<Player>();
+        players2.add(player4);
+        players2.add(player1);
+        
+        MathGame mg1 = new MathGame(ModalityEnum.EASY, players2);
+        
+        MathGame mg2 = new MathGame(ModalityEnum.FORFRESHMEN, players);
+        
+        players.add(player4);
+        
+        MathGame mg3 = new MathGame(ModalityEnum.EASY, players);
         
         
-        MathGame mg = new MathGame(ModalityEnum.EASY, players);
         //Statistics sta = new Statistics();
 
         GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
@@ -42,11 +57,16 @@ public class Main_test {
         GenericDAO<MathGame> genericDAOMathGame = new GenericDAOImpl<MathGame>();
      
         
-        //genericDAOPlayer.save(player1);
-
-        genericDAOMathGame.save(mg);
+//        genericDAOPlayer.save(player1);
+//        genericDAOPlayer.save(player2);
+//        genericDAOPlayer.save(player3);
+//        genericDAOPlayer.save(player4);
         
+        genericDAOMathGame.save(mg1);
+        //genericDAOMathGame.delete(mg1);
+        genericDAOMathGame.save(mg2);
         //playerRN.save(player);
+        //genericDAOMathGame.save(mg3);
 
         
         // Esta dentro da classe PlayerDAOImp

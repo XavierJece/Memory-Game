@@ -8,13 +8,20 @@ package pooii.utfpr.memory_game.Control;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
-import model.VO.modalidades.ModalityEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Modallity;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
@@ -34,13 +41,13 @@ public class MathGame {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id
     private long codigo;
     
-    @OneToMany(orphanRemoval = false, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Player> gamers;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Modallity modallity;
     
-    
+    private int biggerSequence; 
     private LocalDate timeBegin;
     private LocalDate timeEnd;
     

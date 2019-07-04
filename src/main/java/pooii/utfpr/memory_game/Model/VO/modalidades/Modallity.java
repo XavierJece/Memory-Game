@@ -5,6 +5,7 @@
  */
 package pooii.utfpr.memory_game.Model.VO.modalidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,8 @@ public class Modallity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id  
     private Long codigo;
+    
+    @Column(unique = true)
     String name;
     int quantityPiece;
     String description;

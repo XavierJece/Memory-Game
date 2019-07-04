@@ -1,5 +1,8 @@
 package pooii.utfpr.memory_game.Model.VO;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javafx.stage.Modality;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Modallity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class Statistics {
@@ -21,16 +25,13 @@ public class Statistics {
     
     @ManyToOne @JoinColumn(name = "id_modality")
     private Modallity mod;
-    
-    
-    private int time;
 
     private int biggerSequence;
 
-    private int beginTime;
+    private LocalDate beginTime;
     
     
-    private int endTime;
+    private LocalDate endTime;
 
     public Statistics() {
     }
@@ -49,12 +50,9 @@ public class Statistics {
         this.player = player;
     }
 
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
+    public Duration getTime() {
+        
+        return Duration.between(this.beginTime, this.endTime);
     }
 
     public int getBiggerSequence() {
@@ -65,19 +63,19 @@ public class Statistics {
         this.biggerSequence = biggerSequence;
     }
 
-    public int getBeginTime() {
+    public LocalDate getBeginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(int beginTime) {
+    public void setBeginTime(LocalDate beginTime) {
         this.beginTime = beginTime;
     }
 
-    public int getEndTime() {
+    public LocalDate getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(LocalDate endTime) {
         this.endTime = endTime;
     }
 

@@ -5,7 +5,7 @@
  */
 package pooii.utfpr.memory_game.Model.VO.factory;
 
-import model.VO.modalidades.*;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.*;
 
 /**
