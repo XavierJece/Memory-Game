@@ -5,10 +5,12 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -105,7 +107,7 @@ public class TelaPartida extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         /*Criando botões dinamicas*/
-        createGame(24, 2, 100);
+        createGame(4, 2, 150);
         
         /*Para conseguir ver*/
         this.setVisible(true);
@@ -122,34 +124,23 @@ public class TelaPartida extends JFrame{
         int quantidadeBotoes = quantidadeImg * quantidadeConminacao;
         int tamanhoTelaWidth = 0;
         int tamanhoTelaHeight = 0;
+        int i = 0, j = 0;
+        List<Rectangle> posicionamentosBtn = new ArrayList<>();
+        Random rand = new Random();
         //Quantidade de botões
         
         ControleBotoesSelecionados controle = null;
         
-        
-        
-        for(int i = 0; i < quantidadeBotoes; i++){
+        /*Randomizando Posicao*/
+        for(i = 0; i < quantidadeBotoes; i++){
+            Rectangle posicaoBtn = new Rectangle(posX, posY, dimensaoBtn, dimensaoBtn);
+            posicionamentosBtn.add(posicaoBtn);
             
-            if( (i % quantidadeConminacao) == 0){
-                //Quantidade de controladores
-                identificacaoImage++;                                                   //Incrementando a referencia para a foto
-                controle = new ControleBotoesSelecionados();                            //Instanciando um controle
-                controle.setImgFrenteBotao("Img_" + identificacaoImage);                //Definindo a Imagem que estará oculta
-                this.listaControle.add(controle);                                       //Adicionado o controle na lista dos Controles Ativos
-            }
-            
-            JButton btn = new JButton(piece.createImg(PieceEnum.IMAGEM_COSTAS, dimensaoBtn)); //Criando o Objeto Botão já com o Icon            
-            this.painel.add(btn);                                                       // Adicionando o Botão na Tela
-            btn.addActionListener(this.acoesBtn);                                       //Adicionando a Ação de Click no Botão
-            
-            
-            
-            
-            btn.setBounds(posX, posY, dimensaoBtn, dimensaoBtn);           //Defnindo posição dinanicamento dos botões
             
             if(quantidadeBotoes == 8){
                 
                 if( ( (i + 1) % 4) == 0){
+                    
                     posY += this.ESPACAMENTO_BUTTON + dimensaoBtn;
                     posX = this.ESPACAMENTO_BUTTON;
                 }else{
@@ -182,7 +173,30 @@ public class TelaPartida extends JFrame{
                     posX += this.ESPACAMENTO_BUTTON + dimensaoBtn;
                 }
             }
+        }
+        
+        
+        for(i = 0; i < quantidadeBotoes; i++){
             
+            if( (i % quantidadeConminacao) == 0){
+                //Quantidade de controladores
+                identificacaoImage++;                                                   //Incrementando a referencia para a foto
+                controle = new ControleBotoesSelecionados();                            //Instanciando um controle
+                controle.setImgFrenteBotao("Img_" + identificacaoImage);                //Definindo a Imagem que estará oculta
+                this.listaControle.add(controle);                                       //Adicionado o controle na lista dos Controles Ativos
+            }
+            
+            JButton btn = new JButton(piece.createImg(PieceEnum.IMAGEM_COSTAS, dimensaoBtn)); //Criando o Objeto Botão já com o Icon            
+            this.painel.add(btn);                                                       // Adicionando o Botão na Tela
+            btn.addActionListener(this.acoesBtn);                                       //Adicionando a Ação de Click no Botão
+            
+            
+            
+            
+            //btn.setBounds(posX, posY, dimensaoBtn, dimensaoBtn);           //Defnindo posição dinanicamento dos botões
+            int posicaoBtn = rand.nextInt( ( (posicionamentosBtn.size() - 1) > 0 ) ? (posicionamentosBtn.size() - 1) : 1);
+            btn.setBounds(posicionamentosBtn.get(posicaoBtn));
+            posicionamentosBtn.remove(posicaoBtn);
             
             controle.addBtn(btn);                                                       //Adicionando o Botão no controle
             
@@ -215,7 +229,11 @@ public class TelaPartida extends JFrame{
         
         
         System.out.println("wi: " + tamanhoTelaWidth + " hei: " + tamanhoTelaHeight);
+        
+        
+        /*Definico a dimenção da tela*/
         this.setBounds(0, 0, tamanhoTelaWidth, tamanhoTelaHeight);
+        this.setLocationRelativeTo(null); //Para 
     }
     
 

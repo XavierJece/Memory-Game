@@ -7,7 +7,7 @@ package pooii.utfpr.memory_game.View;
 
 import java.util.ArrayList;
 import java.util.List;
-import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Control.MatchGame;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
@@ -42,13 +42,13 @@ public class Main_test {
         players2.add(player4);
         players2.add(player1);
         
-        MatchGame mg1 = new MatchGame(DifficultyEnum.EASY, players2);
+        MatchGame mg1 = new MatchGame(ModalityEnum.EASY, players2);
         
-        MatchGame mg2 = new MatchGame(DifficultyEnum.FORFRESHMEN, players);
+        MatchGame mg2 = new MatchGame(ModalityEnum.FORFRESHMEN, players);
         
         players.add(player4);
         
-        MatchGame mg3 = new MatchGame(DifficultyEnum.EASY, players);
+        MatchGame mg3 = new MatchGame(ModalityEnum.EASY, players);
         
         
         //Statistics sta = new Statistics();

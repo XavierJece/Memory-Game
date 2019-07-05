@@ -9,7 +9,7 @@ package pooii.utfpr.memory_game.Model.VO.modalidades;
  *
  * @author Jece Xavier
  */
-public enum DifficultyEnum {
+public enum ModalityEnum {
     FORFRESHMEN("FORFRESHMEN"),
     EASY("EASY"),
     MIDDLE("MIDDLE"),
@@ -18,7 +18,7 @@ public enum DifficultyEnum {
     
     private String modality;
    
-    DifficultyEnum(String modality) {
+    ModalityEnum(String modality) {
         this.modality = modality;
     }
     

@@ -11,7 +11,7 @@ import java.util.List;
 import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
-import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.*;
 
 /**
@@ -20,7 +20,7 @@ import pooii.utfpr.memory_game.Model.VO.modalidades.*;
  */
 public class SimpleModalityFactory {
     
-    public static Difficulty createModality(DifficultyEnum nome)
+    public static Difficulty createModality(ModalityEnum nome)
     {
         int flag = 1;
         Difficulty modality = null;

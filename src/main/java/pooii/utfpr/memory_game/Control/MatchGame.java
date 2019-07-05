@@ -24,7 +24,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
-import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
@@ -64,10 +64,10 @@ public class MatchGame {
     * @author Professor Xavier
     * @author Matheus Ferreira
     * @author Lucas Vidotto
-    * @param mode DifficultyEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
+    * @param mode ModalityEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
     * @return Difficulty - instancia de uma modalidade expecifica
     */
-    public MatchGame(DifficultyEnum mode) {
+    public MatchGame(ModalityEnum mode) {
        this.modallity = SimpleModalityFactory.createModality(mode);
         
     }
@@ -76,11 +76,11 @@ public class MatchGame {
     * @author Professor Xavier
     * @author Matheus Ferreira
     * @author Lucas Vidotto
-    * @param mode DifficultyEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
+    * @param mode ModalityEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
     * @param gamers List<String> - Lista dos nomes (nikName) dos jogadores.
     * @return Difficulty - instancia de uma modalidade expecifica
     */
-    public MatchGame(DifficultyEnum mode, List<Player> gamers) {
+    public MatchGame(ModalityEnum mode, List<Player> gamers) {
         
         //Caso a lista estiver com também 0, como fazer para não ser criada?
         

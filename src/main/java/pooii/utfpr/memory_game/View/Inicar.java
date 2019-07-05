@@ -9,7 +9,7 @@ package pooii.utfpr.memory_game.View;
  *
  * @author Jece Xavier
  */
-public class Iniciar {
+public class Inicar {
     
     
     public static void main(String[] args) {
@@ -18,6 +18,4 @@ public class Iniciar {
         TelaPartida tp = new TelaPartida("Teste");
         
     }
-    
-    
 }
