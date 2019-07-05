@@ -19,11 +19,11 @@ public class Piece {
 
     
     /*Minhas Funções */
-    public ImageIcon createImg(String nameImage){
+    public ImageIcon createImg(String nameImage, int dimesaoBtn){
         
         String pathRaiz = "C:\\Users\\Jece Xavier\\Documents\\NetBeansProjects\\Memory-Game\\src\\main\\resources\\img\\";
-        int widthButton = 160;
-        int heightButton = 150;
+        int widthButton = dimesaoBtn + 10;
+        int heightButton = dimesaoBtn;
         
         
         ImageIcon img = new ImageIcon(getClass().getResource("/img/" + nameImage + ".jpg")); 
@@ -33,12 +33,11 @@ public class Piece {
         return imageIcon;
     }
     
-    public ImageIcon createImg(PieceEnum nameImage){
+    public ImageIcon createImg(PieceEnum nameImage, int dimesaoBtn){
         
         //String pathRaiz = "C:\\Users\\Jece Xavier\\Documents\\NetBeansProjects\\Memory-Game\\src\\main\\resources\\img\\";
-        int widthButton = 160;
-        int heightButton = 150;//pathRaiz + nameImage.getNameImg() + ".jpg"
-        
+        int widthButton = dimesaoBtn + 10;
+        int heightButton = dimesaoBtn;
         
         ImageIcon img = new ImageIcon(getClass().getResource("/img/" + nameImage.getNameImg() + ".jpg")); 
         Image image = img.getImage().getScaledInstance(widthButton, heightButton, Image.SCALE_SMOOTH);

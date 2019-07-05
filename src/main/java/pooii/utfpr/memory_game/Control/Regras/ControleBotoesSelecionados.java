@@ -64,14 +64,14 @@ public class ControleBotoesSelecionados {
        switch(selecionado){
            case OCULTO: //Não exibir nada
                btn.setBackground(null);
-               btn.setIcon(this.piece.createImg(PieceEnum.IMAGEM_COSTAS));
+               btn.setIcon(this.piece.createImg(PieceEnum.IMAGEM_COSTAS, btn.getWidth()));
            break;
            case SELECIONADO: //Exibir
 //             btn.setEnabled(Boolean.FALSE);
-               btn.setIcon(this.piece.createImg(this.imgFrenteBotao));
+               btn.setIcon(this.piece.createImg(this.imgFrenteBotao, btn.getWidth()));
            break;
            case ENCONTRADO:
-               btn.setIcon(this.piece.createImg(this.imgFrenteBotao));
+               btn.setIcon(this.piece.createImg(this.imgFrenteBotao, btn.getWidth()));
                btn.setEnabled(Boolean.FALSE);
            break;
        }
