@@ -53,7 +53,7 @@ public class Main_test {
         
         //Statistics sta = new Statistics();
 
-        GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
+//        GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
         
         GenericDAO<MatchGame> genericDAOMathGame = new GenericDAOImpl<MatchGame>();
      
@@ -71,7 +71,7 @@ public class Main_test {
         
         
         
-        
+        System.out.println("Modalidade: " + mg2.getModallity().getName() );
 
         
         // Esta dentro da classe PlayerDAOImp

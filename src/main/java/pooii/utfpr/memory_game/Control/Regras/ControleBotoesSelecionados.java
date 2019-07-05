@@ -19,6 +19,7 @@ public class ControleBotoesSelecionados {
     
     
    private String imgFrenteBotao;
+   private String imgCostasBotao;
    private Map<JButton, EstadoBotoes> referenciaBotoes;
    
    /*Atributo de controle*/
@@ -96,6 +97,14 @@ public class ControleBotoesSelecionados {
    
    
    /*Gets and Sets*/
+   public String getImgCostasBotao() {
+        return imgCostasBotao;
+    }
+
+    public void setImgCostasBotao(String imgCostasBotao) {
+        this.imgCostasBotao = imgCostasBotao;
+    }
+   
     public String getImgFrenteBotao() {
         return imgFrenteBotao;
     }

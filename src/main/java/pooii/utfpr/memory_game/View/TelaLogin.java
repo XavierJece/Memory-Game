@@ -13,16 +13,23 @@ import pooii.utfpr.memory_game.Model.VO.PieceEnum;
  * @author a1980009
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    /*Atributos*/
+    Piece img;
+    
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
         
+        //Definindo tamanhho FIXO e posição da janeta
+        this.setBounds(0,0, 500, 500);
+        this.setResizable(Boolean.FALSE);
+        this.setLocationRelativeTo(null);
+        
         //Criacao de imagem
-        Piece img = new Piece();
-        lblImgLogin.setIcon(img.createImg(PieceEnum.IMAGEM_COSTAS));
+        img = new Piece();
+        
     }
 
     /**
@@ -60,7 +67,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(120, 250, 71, 40);
+        btnAcessar.setBounds(120, 250, 77, 40);
 
         txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +93,10 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAcessarActionPerformed
+
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSairActionPerformed
@@ -93,10 +104,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginActionPerformed
-
-    private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAcessarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -28,6 +28,7 @@ import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
+import pooii.utfpr.memory_game.View.TelaPartida;
 
 /** Classe respontavél por organizar, controlar os dados das partidas.
  *
@@ -47,13 +48,16 @@ public class MatchGame {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Player> gamers;
     
-    //@OneToOne(cascade = CascadeType.PERSIST)
-    @Transient
-    private Difficulty modallity;
+    @OneToOne(cascade = CascadeType.PERSIST)
+
+    private Difficulty difficulty;
     
     private int biggerSequence; 
     private LocalDate timeBegin;
     private LocalDate timeEnd;
+    
+    @Transient
+    TelaPartida tp;
     
     //Constructor
     
@@ -68,7 +72,9 @@ public class MatchGame {
     * @return Difficulty - instancia de uma modalidade expecifica
     */
     public MatchGame(ModalityEnum mode) {
-       this.modallity = SimpleModalityFactory.createModality(mode);
+       this.difficulty = SimpleModalityFactory.createModality(mode);
+       
+       this.tp = new TelaPartida(this.difficulty);
         
     }
     
@@ -90,14 +96,15 @@ public class MatchGame {
 //        List<Modallity> listaModal = null;
 //        System.out.println("tamanho lista " + (modaDAO.listOne("name", "", Difficulty.class)));
         
-        this.modallity = SimpleModalityFactory.createModality(mode);   
+        this.difficulty = SimpleModalityFactory.createModality(mode); 
+        this.tp = new TelaPartida(this.difficulty, this.gamers);
         
     }
     
     
     //My Functions
     public void playGame(){
-        System.out.println("O jogo está iniciado na Modalidade (Dificuldade)... " + this.modallity.getName());
+        System.out.println("O jogo está iniciado na Modalidade (Dificuldade)... " + this.difficulty.getName());
     }
     
     public int getQuantityGamers(){
@@ -130,11 +137,11 @@ public class MatchGame {
     }
 
     public Difficulty getModallity() {
-        return modallity;
+        return difficulty;
     }
 
     public void setModallity(Difficulty modallity) {
-        this.modallity = modallity;
+        this.difficulty = modallity;
     }
 
     public LocalDate getTimeBegin() {

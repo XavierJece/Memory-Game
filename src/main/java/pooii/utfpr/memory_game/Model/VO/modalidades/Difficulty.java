@@ -20,18 +20,67 @@ import pooii.utfpr.memory_game.Control.MatchGame;
  * @author Professor Xavier
  */
 
-//@Entity
+@Entity
     public class Difficulty {
     
     //Atributos
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o auto valor do id  
     private Long codigo;
     
-//  @Column(unique = true)
-    String name;
-    int quantityPiece;
-    String description;
+    @Column(unique = true)
+    private String name;
+    
+    private int quantityPiece;
+    
+    private String description;
+
+    public int getLimiteTime() {
+        return limiteTime;
+    }
+
+    public void setLimiteTime(int limiteTime) {
+        this.limiteTime = limiteTime;
+    }
+
+    public int getQuatityColumn() {
+        return quatityColumn;
+    }
+
+    public void setQuatityColumn(int quatityColumn) {
+        this.quatityColumn = quatityColumn;
+    }
+
+    public int getDimensionPiece() {
+        return dimensionPiece;
+    }
+
+    public void setDimensionPiece(int dimensionPiece) {
+        this.dimensionPiece = dimensionPiece;
+    }
+
+    public int getValorAcerto() {
+        return valorAcerto;
+    }
+
+    public void setValorAcerto(int valorAcerto) {
+        this.valorAcerto = valorAcerto;
+    }
+
+    public int getQuatityCombination() {
+        return quatityCombination;
+    }
+
+    public void setQuatityCombination(int quatityCombination) {
+        this.quatityCombination = quatityCombination;
+    }
+    
+    private int limiteTime;
+    private int quatityColumn;
+    private int dimensionPiece;
+    private int valorAcerto;
+    private int quatityCombination;
+    
     
     //Constructor
     

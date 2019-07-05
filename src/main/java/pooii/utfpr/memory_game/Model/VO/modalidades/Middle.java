@@ -16,10 +16,6 @@ public class Middle extends Difficulty{
     
     //Constructor
     public Middle() {
-        this.name = "Middle";
-        this.quantityPiece = 10;
-        this.description = "Fase...";
-        this.time = 30;
     }
     
     //Gets and Sets
