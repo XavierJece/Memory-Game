@@ -5,16 +5,23 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 import pooii.utfpr.memory_game.Control.Regras.ControleBotoesSelecionados;
 import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
 import pooii.utfpr.memory_game.Model.VO.Piece;
@@ -115,6 +122,7 @@ public class TelaPartida extends JFrame{
         /*instacionado os componentes e add Não tela*/
         painel = new JPanel();
         painel.setLayout(null);
+        painel.addMouseListener(this.opcoesPartida());
         this.add(painel);
         
         /*Para conseguir Fechar*/
@@ -146,7 +154,7 @@ public class TelaPartida extends JFrame{
                 identificacaoImage++;                                                   //Incrementando a referencia para a foto
                 controle = new ControleBotoesSelecionados();                            //Instanciando um controle
                 controle.setImgFrenteBotao("Img_" + identificacaoImage);                //Definindo a Imagem que estará oculta
-                controle.setImgCostasBotao(PieceEnum.IMAGEM_COSTAS.getNameImg());       //Definindo a Imagem que estará nas costas da carta
+                controle.setImgCostasBotao(PieceEnum.IMAGEM_COSTAS_PADRAO.getNameImg());       //Definindo a Imagem que estará nas costas da carta
                 
                 this.listaControle.add(controle);                                       //Adicionado o controle na lista dos Controles Ativos
             }
@@ -264,5 +272,201 @@ public class TelaPartida extends JFrame{
         JOptionPane.showMessageDialog(null, "Partida Finalizada");
         
     }
+    
+    private MouseAdapter opcoesPartida(){
+        final JPopupMenu pm = new JPopupMenu();
+        
+        JMenuItem dica = new JMenuItem("Dica");
+        JMenu trocasImgCostas = new JMenu("Trocas Imagem Costas Carta");
+        JSeparator separador = new JSeparator();
+        
+        for(int i = 0; i < opcaoImgCostas().size(); i++){
+            if( i  == (opcaoImgCostas().size() - 1) ){
+             trocasImgCostas.add(separador);
+            }
+            trocasImgCostas.add(opcaoImgCostas().get(i));
+        }
+        
+        pm.add(trocasImgCostas);
+        pm.add(separador);
+        pm.add(dica);
+        
+        
+        MouseAdapter acao = new MouseAdapter() {
+            
+            public void mouseReleased(MouseEvent me){
+                pm.show(me.getComponent(), me.getX(), me.getY());
+            }
+            
+        };
+        
+        return acao;
+    }
+    
+    private List<JMenu> opcaoImgCostas(){
+        List<JMenu> opocoes = new ArrayList<>();
+        JMenu opcao = null;
+        
+        opcao = new JMenu("Celebro");
+        for (int i = 0; i < opcaoImgCostasCelebro().size(); i++) {
+            opcao.add(opcaoImgCostasCelebro().get(i));
+        }
+        opocoes.add(opcao);
+        
+        opcao = new JMenu("Ideia");
+        for (int i = 0; i < opcaoImgCostasIdeia().size(); i++) {
+            opcao.add(opcaoImgCostasIdeia().get(i));
+        }
+        opocoes.add(opcao);
+        
+        opcao = new JMenu("Interrogação");
+        for (int i = 0; i < opcaoImgCostasInterrogacao().size(); i++) {
+            opcao.add(opcaoImgCostasInterrogacao().get(i));
+        }
+        opocoes.add(opcao);
+        
+        opcao = new JMenu("Mestre Ivad");
+        for (int i = 0; i < opcaoImgCostasMestreIvad().size(); i++) {
+            opcao.add(opcaoImgCostasMestreIvad().get(i));
+        }
+        opocoes.add(opcao);
+        
+        return opocoes;
+    }
+    
+    private List<JMenuItem> opcaoImgCostasCelebro(){
+        List<JMenuItem> opocoes = new ArrayList<>();
+        JMenuItem opcao = null;
+        
+        opcao = new JMenuItem("Celebro 1");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_CELEBRO_1));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Celebro 2");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_CELEBRO_2));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Celebro 3");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_CELEBRO_3));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Celebro 4");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_CELEBRO_4));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Celebro 5");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_CELEBRO_5));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Celebro 6");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_CELEBRO_6));
+        opocoes.add(opcao);
+        
+        return opocoes;
+    }
+    
+    private List<JMenuItem> opcaoImgCostasIdeia(){
+        List<JMenuItem> opocoes = new ArrayList<>();
+        JMenuItem opcao = null;
+        
+        opcao = new JMenuItem("Ideia 1");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_IDEIA_1));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Ideia 2");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_IDEIA_2));
+        opocoes.add(opcao);
+        
+        return opocoes;
+    }
+    
+    private List<JMenuItem> opcaoImgCostasInterrogacao(){
+        List<JMenuItem> opocoes = new ArrayList<>();
+        JMenuItem opcao = null;
+        
+        opcao = new JMenuItem("Interrogação 1");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_INTERROGACAO));
+        opocoes.add(opcao);
+        
+        return opocoes;
+    }
+    
+    private List<JMenuItem> opcaoImgCostasMestreIvad(){
+        List<JMenuItem> opocoes = new ArrayList<>();
+        JMenuItem opcao = null;
+        
+        opcao = new JMenuItem("Após Prova");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_APOS_PROVA));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Biólogo");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_BIOLOGO));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Comida Boa");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_COMIDA_BOA));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Cowboy");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_COWBOY));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Doente");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_DOENTE));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Fazendo PUM");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_FAZENDO_PUM));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Festa Junina");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_FESTA_JUNINA));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Matrix");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_MATRIX));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Saboreando Comida");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_SABOREANDO_COMIDA));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Segundos Intenções");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_SEGUNDAS_INTECOES));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Seguro");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_SEGURO));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Sério");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_SERIO));
+        opocoes.add(opcao);
+        
+        opcao = new JMenuItem("Sóbrio");
+        opcao.addActionListener(alterarCostas(PieceEnum.IMAGEM_COSTAS_DAVI_SOBRIO));
+        opocoes.add(opcao);
+        
+        return opocoes;
+    }
+    
+    private ActionListener alterarCostas(final PieceEnum img){
+        ActionListener acao = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < listaControle.size(); i++) {
+//                    System.out.println("img: " + img.getNameImg());
+                    listaControle.get(i).setImgCostasBotao(img.getNameImg());
+                    listaControle.get(i).alterarCostasBtn();
+                    
+                    System.out.println("imgC: " + listaControle.get(i).getImgCostasBotao());
+                }
+            }
+        };
+        
+        return acao;
+    }
+    
 
 }

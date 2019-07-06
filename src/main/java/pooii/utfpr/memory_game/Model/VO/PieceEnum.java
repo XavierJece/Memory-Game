@@ -14,7 +14,34 @@ public enum PieceEnum {
     /**
      *
      */
-    IMAGEM_COSTAS("Img_0"),
+    IMAGEM_COSTAS_PADRAO("Img_Costas_Celebro_1"),
+    
+    IMAGEM_COSTAS_INTERROGACAO("Img_Costas_Interrogacao"),
+    
+    IMAGEM_COSTAS_IDEIA_1("Img_Costas_Ideia_1"),
+    IMAGEM_COSTAS_IDEIA_2("Img_Costas_Ideia_2"),
+    
+    IMAGEM_COSTAS_DAVI_SOBRIO("Img_Costas_Davi_Sobrio"),
+    IMAGEM_COSTAS_DAVI_SERIO("Img_Costas_Davi_Serio"),
+    IMAGEM_COSTAS_DAVI_SEGURO("Img_Costas_Davi_Seguro"),
+    IMAGEM_COSTAS_DAVI_SABOREANDO_COMIDA("Img_Costas_Davi_Saboreando_Comida"),
+    IMAGEM_COSTAS_DAVI_MATRIX("Img_Costas_Davi_Matrix"),
+    IMAGEM_COSTAS_DAVI_COMIDA_BOA("Img_Costas_Davi_Comida_Boa"),
+    IMAGEM_COSTAS_DAVI_SEGUNDAS_INTECOES("Img_Costas_Davi_Segundas_Intencoes"),
+    IMAGEM_COSTAS_DAVI_FAZENDO_PUM("Img_Costas_Davi_Fiz_Pum"),
+    IMAGEM_COSTAS_DAVI_FESTA_JUNINA("Img_Costas_Davi_Em_Festa_Junina"),
+    IMAGEM_COSTAS_DAVI_DOENTE("Img_Costas_Davi_Doente"),
+    IMAGEM_COSTAS_DAVI_COWBOY("Img_Costas_Davi_Cowboy"),
+    IMAGEM_COSTAS_DAVI_BIOLOGO("Img_Costas_Davi_Biologo"),
+    IMAGEM_COSTAS_DAVI_APOS_PROVA("Img_Costas_Davi_AposProva"),
+    
+    IMAGEM_COSTAS_CELEBRO_1("Img_Costas_Celebro_1"),
+    IMAGEM_COSTAS_CELEBRO_2("Img_Costas_Celebro_2"),
+    IMAGEM_COSTAS_CELEBRO_3("Img_Costas_Celebro_3"),
+    IMAGEM_COSTAS_CELEBRO_4("Img_Costas_Celebro_4"),
+    IMAGEM_COSTAS_CELEBRO_5("Img_Costas_Celebro_5"),
+    IMAGEM_COSTAS_CELEBRO_6("Img_Costas_Celebro_6"),
+    
     IMAGEM_01("Img_1"),
     IMAGEM_02("Img_2"),
     IMAGEM_03("Img_3"),

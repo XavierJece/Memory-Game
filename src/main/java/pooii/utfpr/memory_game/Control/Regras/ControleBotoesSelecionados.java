@@ -49,6 +49,12 @@ public class ControleBotoesSelecionados {
         }
     }
     
+    public void alterarCostasBtn(){
+        for(JButton btn: this.referenciaBotoes.keySet()){
+            this.alterarVisualizacaoBtn(btn);
+        }
+    }
+    
    public void addBtn(JButton btn){
        this.referenciaBotoes.put(btn, EstadoBotoes.OCULTO);
    }
@@ -64,8 +70,8 @@ public class ControleBotoesSelecionados {
        
        switch(selecionado){
            case OCULTO: //Não exibir nada
-               btn.setBackground(null);
-               btn.setIcon(this.piece.createImg(PieceEnum.IMAGEM_COSTAS, btn.getWidth()));
+//               btn.setBackground(null);
+               btn.setIcon(this.piece.createImg(this.imgCostasBotao, btn.getWidth()));
            break;
            case SELECIONADO: //Exibir
 //             btn.setEnabled(Boolean.FALSE);
