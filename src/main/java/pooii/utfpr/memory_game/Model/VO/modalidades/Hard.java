@@ -17,10 +17,6 @@ public class Hard extends Difficulty{
     
     //Constructor
     public Hard() {
-        this.name = "Hard";
-        this.quantityPiece = 30;
-        this.description = "Fase...";
-        this.time = 10;
     }
     
     //Gets and Sets

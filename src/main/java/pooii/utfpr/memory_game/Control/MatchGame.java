@@ -24,10 +24,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
-import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
+import pooii.utfpr.memory_game.View.TelaPartida;
 
 /** Classe respontavél por organizar, controlar os dados das partidas.
  *
@@ -47,13 +48,16 @@ public class MatchGame {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Player> gamers;
     
-    //@OneToOne(cascade = CascadeType.PERSIST)
-    @Transient
-    private Difficulty modallity;
+    @OneToOne(cascade = CascadeType.PERSIST)
+
+    private Difficulty difficulty;
     
     private int biggerSequence; 
     private LocalDate timeBegin;
     private LocalDate timeEnd;
+    
+    @Transient
+    TelaPartida tp;
     
     //Constructor
     
@@ -64,11 +68,13 @@ public class MatchGame {
     * @author Professor Xavier
     * @author Matheus Ferreira
     * @author Lucas Vidotto
-    * @param mode DifficultyEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
+    * @param mode ModalityEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
     * @return Difficulty - instancia de uma modalidade expecifica
     */
-    public MatchGame(DifficultyEnum mode) {
-       this.modallity = SimpleModalityFactory.createModality(mode);
+    public MatchGame(ModalityEnum mode) {
+       this.difficulty = SimpleModalityFactory.createModality(mode);
+       
+       this.tp = new TelaPartida(this.difficulty);
         
     }
     
@@ -76,11 +82,11 @@ public class MatchGame {
     * @author Professor Xavier
     * @author Matheus Ferreira
     * @author Lucas Vidotto
-    * @param mode DifficultyEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
+    * @param mode ModalityEnum - O nome (tipo) de modalidade (dificuldade) que será criado.
     * @param gamers List<String> - Lista dos nomes (nikName) dos jogadores.
     * @return Difficulty - instancia de uma modalidade expecifica
     */
-    public MatchGame(DifficultyEnum mode, List<Player> gamers) {
+    public MatchGame(ModalityEnum mode, List<Player> gamers) {
         
         //Caso a lista estiver com também 0, como fazer para não ser criada?
         
@@ -90,14 +96,15 @@ public class MatchGame {
 //        List<Modallity> listaModal = null;
 //        System.out.println("tamanho lista " + (modaDAO.listOne("name", "", Difficulty.class)));
         
-        this.modallity = SimpleModalityFactory.createModality(mode);   
+        this.difficulty = SimpleModalityFactory.createModality(mode); 
+        this.tp = new TelaPartida(this.difficulty, this.gamers);
         
     }
     
     
     //My Functions
     public void playGame(){
-        System.out.println("O jogo está iniciado na Modalidade (Dificuldade)... " + this.modallity.getName());
+        System.out.println("O jogo está iniciado na Modalidade (Dificuldade)... " + this.difficulty.getName());
     }
     
     public int getQuantityGamers(){
@@ -130,11 +137,11 @@ public class MatchGame {
     }
 
     public Difficulty getModallity() {
-        return modallity;
+        return difficulty;
     }
 
     public void setModallity(Difficulty modallity) {
-        this.modallity = modallity;
+        this.difficulty = modallity;
     }
 
     public LocalDate getTimeBegin() {

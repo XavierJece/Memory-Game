@@ -24,8 +24,8 @@ public class Statistics {
     @JoinColumn(name = "id_player")
     private Player player;
     
-//    @ManyToOne @JoinColumn(name = "id_modality")
-    @Transient
+    @ManyToOne @JoinColumn(name = "id_modality")
+//    @Transient
     private Difficulty mod;
 
     private int biggerSequence;

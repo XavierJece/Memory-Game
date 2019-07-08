@@ -12,9 +12,6 @@ package pooii.utfpr.memory_game.Model.VO.modalidades;
 public class ForFreshmen extends Difficulty{
 
     public ForFreshmen() {
-        this.name = "Para Calouros";
-        this.quantityPiece = 4;
-        this.description  =  "Fase...";
     }
     
     

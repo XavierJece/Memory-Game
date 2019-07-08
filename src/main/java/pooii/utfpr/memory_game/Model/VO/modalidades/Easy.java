@@ -14,9 +14,6 @@ public class Easy extends Difficulty{
     
     //Constructor
     public Easy() {
-        this.name = "Easy";
-        this.quantityPiece = 12;
-        this.description  = "Fase..."; 
     }
     
     

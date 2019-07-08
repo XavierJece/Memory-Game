@@ -11,7 +11,7 @@ import java.util.List;
 import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
-import pooii.utfpr.memory_game.Model.VO.modalidades.DifficultyEnum;
+import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.*;
 
 /**
@@ -20,45 +20,34 @@ import pooii.utfpr.memory_game.Model.VO.modalidades.*;
  */
 public class SimpleModalityFactory {
     
-    public static Difficulty createModality(DifficultyEnum nome)
+    public static Difficulty createModality(ModalityEnum nome)
     {
         int flag = 1;
         Difficulty modality = null;
-        /*GenericDAO<Modallity> modaDAO = new GenericDAOImpl<>();
-        List<Modallity> listaModal = null;
-        System.out.println("tamanho lista " + (modaDAO.listAll(Difficulty.class).size()));*/
+        GenericDAO<Difficulty> modalityDAO = new GenericDAOImpl<>();
         
         if (nome.getModality().equals("FORFRESHMEN")){
             
-            modality = new ForFreshmen();
+            modality = modalityDAO.listOne("codigo", 1, Difficulty.class);
             
-        }
-        if (nome.getModality().equals("EASY")){
-           /*for(int i = 0; i < listaModal.size(); i++){
-                if(listaModal.get(i).getName().equals("Easy")){
-                    flag = 0;
-                }
-            }*/
-           if(flag == 1){
-             modality = new Easy();
-           }
+        }else if(nome.getModality().equals("EASY")){
             
-        }
-        if(nome.getModality().equals("MIDDLE")){
+            modality = modalityDAO.listOne("codigo", 2, Difficulty.class);
             
-            modality = new Middle();
+        }else if(nome.getModality().equals("MIDDLE")){
             
-        }
-        if(nome.getModality().equals("HARD")){
+            modality = modalityDAO.listOne("codigo", 3, Difficulty.class);
             
-            modality = new Hard();
+        }else if(nome.getModality().equals("HARD")){
+            
+            modality = modalityDAO.listOne("codigo", 4, Difficulty.class);
+            
+        }else if(nome.getModality().equals("SUPERWAGNER")){
+            
+            modality = modalityDAO.listOne("codigo", 5, Difficulty.class);
             
         }
         
-        if(nome.getModality().equals("SUPERWAGNER"))
-        {
-            modality = new SuperWagner();
-        }
         
         return modality;
     }

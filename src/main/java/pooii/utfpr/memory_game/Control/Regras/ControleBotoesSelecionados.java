@@ -19,6 +19,7 @@ public class ControleBotoesSelecionados {
     
     
    private String imgFrenteBotao;
+   private String imgCostasBotao;
    private Map<JButton, EstadoBotoes> referenciaBotoes;
    
    /*Atributo de controle*/
@@ -48,6 +49,12 @@ public class ControleBotoesSelecionados {
         }
     }
     
+    public void alterarCostasBtn(){
+        for(JButton btn: this.referenciaBotoes.keySet()){
+            this.alterarVisualizacaoBtn(btn);
+        }
+    }
+    
    public void addBtn(JButton btn){
        this.referenciaBotoes.put(btn, EstadoBotoes.OCULTO);
    }
@@ -63,8 +70,8 @@ public class ControleBotoesSelecionados {
        
        switch(selecionado){
            case OCULTO: //Não exibir nada
-               btn.setBackground(null);
-               btn.setIcon(this.piece.createImg(PieceEnum.IMAGEM_COSTAS, btn.getWidth()));
+//               btn.setBackground(null);
+               btn.setIcon(this.piece.createImg(this.imgCostasBotao, btn.getWidth()));
            break;
            case SELECIONADO: //Exibir
 //             btn.setEnabled(Boolean.FALSE);
@@ -96,6 +103,14 @@ public class ControleBotoesSelecionados {
    
    
    /*Gets and Sets*/
+   public String getImgCostasBotao() {
+        return imgCostasBotao;
+    }
+
+    public void setImgCostasBotao(String imgCostasBotao) {
+        this.imgCostasBotao = imgCostasBotao;
+    }
+   
     public String getImgFrenteBotao() {
         return imgFrenteBotao;
     }

@@ -16,10 +16,6 @@ public class SuperWagner extends Difficulty{
 
     //Constructor
     public SuperWagner() {
-        this.name =  "Super Wagner";
-        this.quantityPiece = 20;
-        this.description = "Fase";
-        this.time = 5;
     }
     
     
