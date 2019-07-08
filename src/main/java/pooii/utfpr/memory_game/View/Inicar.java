@@ -5,6 +5,10 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import java.util.List;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
+import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
@@ -18,9 +22,12 @@ public class Inicar {
     
     public static void main(String[] args) {
         
-        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
+        GenericDAO<Player> playerDAO = new GenericDAOImpl<>();
+        List<Player> gamers = playerDAO.listAll(Player.class);
         
-        TelaPartida tp = new TelaPartida(dif);
+        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.FORFRESHMEN);
+        
+        TelaPartida tp = new TelaPartida(dif, gamers);
         
     }
 }

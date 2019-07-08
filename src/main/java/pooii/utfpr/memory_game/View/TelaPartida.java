@@ -6,6 +6,7 @@
 package pooii.utfpr.memory_game.View;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -36,12 +37,12 @@ import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
  * @author Jece Xavier
  */
 public class TelaPartida extends JFrame{
-    
-    
+
     /*Atritutos =>  Atributos de Controle*/
     private int ESPACAMENTO_BUTTON = 20;
     private int quantidadejogadas = 0;
-    Piece piece; 
+    private Piece piece;
+    private boolean comPlayer;
     
     private int QUANTIDADE_LIMITE_JOGADAS;
     private int dimensaoBtn;
@@ -51,10 +52,10 @@ public class TelaPartida extends JFrame{
     private int valorAcerto;
     private List<Player> gamers;
     
-    
-    
-    
     /*Atritutos => Conpodentes de Tela*/
+    private List<JLabel> lbljogadores;
+    private List<JLabel> lblpontuacao;
+    
     private JPanel painelPiece;
     private JPanel painelDados;
    
@@ -75,6 +76,7 @@ public class TelaPartida extends JFrame{
         this.quantidadeColumn = difficult.getQuatityColumn();
         this.valorAcerto = difficult.getValorAcerto();
         this.gamers = gamers;
+        this.comPlayer = Boolean.TRUE;
         
         /*Instacionando Lista Controle*/
         this.listaControle = new ArrayList<>();
@@ -102,6 +104,7 @@ public class TelaPartida extends JFrame{
         this.quantidadeConminacao = difficult.getQuatityCombination();
         this.quantidadeColumn = difficult.getQuatityColumn();
         this.valorAcerto = difficult.getValorAcerto();
+        this.comPlayer = Boolean.FALSE;
         
         /*Instacionando Lista Controle*/
         this.listaControle = new ArrayList<>();
@@ -234,15 +237,78 @@ public class TelaPartida extends JFrame{
         /*Definindo Layout que podemos alterar*/
         this.painelDados.setLayout(null);
         
-        JLabel lbl = new JLabel("Professor Xavier");
-        lbl.setBounds((this.painelPiece.getWidth()), this.ESPACAMENTO_BUTTON, (200 - 2*this.ESPACAMENTO_BUTTON), 25);
-        this.painelDados.add(lbl);
+        /*Chagando as label  dos Jogados*/
+        this.configurandoPlayer();
         
-        this.painelDados.setBounds(this.painelPiece.getWidth(), 0, 200, this.painelPiece.getHeight());
+        this.painelDados.setBounds(this.painelPiece.getWidth(), 0, 340, this.painelPiece.getHeight());
         
         System.out.println("painelDados.setBounds" + this.painelDados.getBounds());
         System.out.println("painelPiece.setBounds" + this.painelPiece.getBounds());
         this.add(this.painelDados);
+    }
+    
+    private void configurandoPlayer(){
+        /*Instaciando as Listas*/
+        this.lbljogadores = new ArrayList<>();
+        this.lblpontuacao = new ArrayList<>();
+        
+        /*Instaciando a font*/
+        Font fontJogador = new Font("Hadassah Friedlaender", Font.CENTER_BASELINE, 18);//
+        
+        /*Criando a lbl*/
+        JLabel lblJogador = null;
+        
+        /*Criador O Titulo Jogador*/
+        lblJogador =  new JLabel("JOGADORES");
+        lblJogador.setFont(fontJogador);
+        lblJogador.setBounds(this.painelPiece.getWidth(), this.ESPACAMENTO_BUTTON, 150, 25);
+        this.painelDados.add(lblJogador);
+        
+        /*Criador O Titulo Pontuação*/
+        lblJogador = new JLabel("POTUAÇÃO");
+        lblJogador.setFont(fontJogador);
+        lblJogador.setBounds((this.painelPiece.getWidth() + 150 + this.ESPACAMENTO_BUTTON), this.ESPACAMENTO_BUTTON, 150, 25);
+        this.painelDados.add(lblJogador);
+        
+        
+        if(this.comPlayer){
+            int i = 0;
+            
+            for(Player jogador : this.gamers){
+                i += 2;
+                
+                lblJogador = new JLabel(jogador.getNickName());
+                lblJogador.setFont(fontJogador);
+                lblJogador.setBounds(this.painelPiece.getWidth(), (i * this.ESPACAMENTO_BUTTON + 25), 150, 25);
+
+                this.lbljogadores.add(lblJogador);
+
+                lblJogador = new JLabel("0 Pontos" );
+                lblJogador.setFont(fontJogador);
+                lblJogador.setBounds((this.painelPiece.getWidth() + 150 + this.ESPACAMENTO_BUTTON), (i * this.ESPACAMENTO_BUTTON + 25), 150, 25);
+
+                this.lblpontuacao.add(lblJogador);
+                
+                
+            }
+        }else{
+            lblJogador = new JLabel("OOH JOVEM");
+            lblJogador.setFont(fontJogador);
+            lblJogador.setBounds(this.painelPiece.getWidth(), (2 * this.ESPACAMENTO_BUTTON + 25), 150, 25);
+            
+            this.lbljogadores.add(lblJogador);
+            
+            lblJogador = new JLabel("0 Pontos" );
+            lblJogador.setFont(fontJogador);
+            lblJogador.setBounds((this.painelPiece.getWidth() + 150 + this.ESPACAMENTO_BUTTON), (2 * this.ESPACAMENTO_BUTTON + 25), 150, 25);
+            
+            this.lblpontuacao.add(lblJogador);
+        }
+        
+        for(int j = 0; j < this.lbljogadores.size(); j++){
+            this.painelDados.add(this.lbljogadores.get(j));
+            this.painelDados.add(this.lblpontuacao.get(j));
+        }
     }
     
     /*Funções de Eventos*/
