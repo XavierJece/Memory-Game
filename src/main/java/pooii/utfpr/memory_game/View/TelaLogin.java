@@ -45,10 +45,13 @@ public class TelaLogin extends javax.swing.JFrame {
         btnAcessar = new javax.swing.JButton();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
-        lblImgLogin = new javax.swing.JLabel();
-        lblfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         btnSair.setText("Sair");
@@ -81,14 +84,6 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(txtSenha);
         txtSenha.setBounds(140, 190, 150, 30);
 
-        lblImgLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Img_0.jpg"))); // NOI18N
-        getContentPane().add(lblImgLogin);
-        lblImgLogin.setBounds(-170, 0, 580, 390);
-
-        lblfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImgLogin/fundo.png"))); // NOI18N
-        getContentPane().add(lblfundo);
-        lblfundo.setBounds(0, 0, 400, 390);
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -104,6 +99,11 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        System.out.println(evt.getButton());
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
@@ -143,8 +143,6 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcessar;
     private javax.swing.JButton btnSair;
-    private javax.swing.JLabel lblImgLogin;
-    private javax.swing.JLabel lblfundo;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables

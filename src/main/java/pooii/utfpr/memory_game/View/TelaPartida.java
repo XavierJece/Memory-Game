@@ -6,6 +6,7 @@
 package pooii.utfpr.memory_game.View;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -53,7 +55,8 @@ public class TelaPartida extends JFrame{
     
     
     /*Atritutos => Conpodentes de Tela*/
-    private JPanel painel;
+    private JPanel painelPiece;
+    private JPanel painelDados;
    
     private List<ControleBotoesSelecionados> listaControle;
     private List<ControleBotoesSelecionados> listaControleSelecionados;
@@ -83,20 +86,11 @@ public class TelaPartida extends JFrame{
         /*Criando ação no botão*/
          this.acoesBtn = virarPiece();
         
-        /*instacionado os componentes e add Não tela*/
-        painel = new JPanel();
-        painel.setLayout(null);
-        this.add(painel);
-        
-        /*Para conseguir Fechar*/
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         /*Criando botões dinamicas*/
-        configuracaoBotoes();
         definirLayoutTela();
         
-        /*Para conseguir ver*/
-        this.setVisible(true);
+        
     }
     
     public TelaPartida(Difficulty difficult){
@@ -119,23 +113,9 @@ public class TelaPartida extends JFrame{
         /*Criando ação no botão*/
          this.acoesBtn = virarPiece();
         
-        /*instacionado os componentes e add Não tela*/
-        painel = new JPanel();
-        painel.setLayout(null);
-        painel.addMouseListener(this.opcoesPartida());
-        this.add(painel);
         
-        /*Para conseguir Fechar*/
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        /*Criando botões dinamicas*/
-        configuracaoBotoes();
         definirLayoutTela();
-        
-        /*Para conseguir ver*/
-        this.setVisible(true);
     }
-    
     
     /*Funções de configuração de Layout*/
     private void configuracaoBotoes(){
@@ -160,7 +140,7 @@ public class TelaPartida extends JFrame{
             }
             
             JButton btn = new JButton(piece.createImg(controle.getImgCostasBotao(), this.dimensaoBtn)); //Criando o Objeto Botão já com o Icon            
-            this.painel.add(btn);                                                       // Adicionando o Botão na Tela
+            this.painelPiece.add(btn);                                                       // Adicionando o Botão na Tela
             btn.addActionListener(this.acoesBtn);                                       //Adicionando a Ação de Click no Botão
             
             
@@ -203,6 +183,34 @@ public class TelaPartida extends JFrame{
     }
     
     private void definirLayoutTela(){
+        /*instacionado os componentes e add Não tela*/
+        definirPanelPiece();
+        definirPanelDados();
+        
+         /*Para conseguir Fechar*/
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        /*Definico a dimenção da tela*/
+        int tamanhoTelaWidth = (this.painelPiece.getWidth() + this.painelDados.getWidth());
+        int tamanhoTelaHeight = this.painelPiece.getHeight();
+                
+        this.setBounds(new Rectangle(tamanhoTelaWidth, tamanhoTelaHeight));
+        this.setLocationRelativeTo(null); //Para deixar centralizado
+//        this.setResizable(Boolean.FALSE); //Para não redimencionar
+        
+        /*Para conseguir ver*/
+        this.setVisible(true);
+    }
+    
+    private void definirPanelPiece(){
+        this.painelPiece = new JPanel();
+        
+        /*Definindo Layout que podemos alterar*/
+        this.painelPiece.setLayout(null);
+        
+        /*Add Evento no Panel*/
+        this.painelPiece.addMouseListener(this.opcoesPartida());
+        
         int tamanhoTelaWidth = 0;
         int tamanhoTelaHeight = 0;
         int quantidadeLinhas = (this.quantidadeImg * this.quantidadeConminacao) / this.quantidadeColumn;
@@ -210,12 +218,32 @@ public class TelaPartida extends JFrame{
         tamanhoTelaWidth = ( (this.dimensaoBtn * this.quantidadeColumn) + (this.ESPACAMENTO_BUTTON * (this.quantidadeColumn + 2) ) );
         tamanhoTelaHeight = ( (this.dimensaoBtn * quantidadeLinhas) + (this.ESPACAMENTO_BUTTON * (quantidadeLinhas + 3) ) );
         
-        /*Definico a dimenção da tela*/
-        this.setBounds(0, 0, tamanhoTelaWidth, tamanhoTelaHeight);
-        this.setLocationRelativeTo(null); //Para deixar centralizado
-        this.setResizable(Boolean.FALSE); //Para não redimencionar
+        /*Definindo Tamanho do Panel*/
+        this.painelPiece.setBounds(new Rectangle(tamanhoTelaWidth, tamanhoTelaHeight));
+        
+        /*add o Painel*/
+        this.add(this.painelPiece);
+        
+        /*Criando botões dinamicas*/
+        this.configuracaoBotoes();
     }
     
+    private void definirPanelDados(){
+        this.painelDados = new JPanel();
+        
+        /*Definindo Layout que podemos alterar*/
+        this.painelDados.setLayout(null);
+        
+        JLabel lbl = new JLabel("Professor Xavier");
+        lbl.setBounds((this.painelPiece.getWidth()), this.ESPACAMENTO_BUTTON, (200 - 2*this.ESPACAMENTO_BUTTON), 25);
+        this.painelDados.add(lbl);
+        
+        this.painelDados.setBounds(this.painelPiece.getWidth(), 0, 200, this.painelPiece.getHeight());
+        
+        System.out.println("painelDados.setBounds" + this.painelDados.getBounds());
+        System.out.println("painelPiece.setBounds" + this.painelPiece.getBounds());
+        this.add(this.painelDados);
+    }
     
     /*Funções de Eventos*/
     private ActionListener virarPiece(){
@@ -295,7 +323,9 @@ public class TelaPartida extends JFrame{
         MouseAdapter acao = new MouseAdapter() {
             
             public void mouseReleased(MouseEvent me){
-                pm.show(me.getComponent(), me.getX(), me.getY());
+                if(me.getButton() == 3){
+                    pm.show(me.getComponent(), me.getX(), me.getY());
+                }
             }
             
         };
@@ -460,7 +490,7 @@ public class TelaPartida extends JFrame{
                     listaControle.get(i).setImgCostasBotao(img.getNameImg());
                     listaControle.get(i).alterarCostasBtn();
                     
-                    System.out.println("imgC: " + listaControle.get(i).getImgCostasBotao());
+//                    System.out.println("imgC: " + listaControle.get(i).getImgCostasBotao());;;
                 }
             }
         };

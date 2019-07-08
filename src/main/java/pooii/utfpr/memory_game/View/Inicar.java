@@ -18,7 +18,7 @@ public class Inicar {
     
     public static void main(String[] args) {
         
-        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.FORFRESHMEN);
+        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
         
         TelaPartida tp = new TelaPartida(dif);
         
