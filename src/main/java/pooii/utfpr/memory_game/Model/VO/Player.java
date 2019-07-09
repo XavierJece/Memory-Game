@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import pooii.utfpr.memory_game.Control.MatchGame;
 
 @Entity // Cria uma tabela no meu Banco de Dadoss
@@ -29,6 +30,12 @@ public class Player {
 
     private LocalDate dateRegister;
     
+    @Transient
+    private int jogando;
+    
+    @Transient
+    private int pontuacao;
+        
 //    @ManyToOne(cascade = CascadeType.PERSIST)
 //    @JoinColumn(name = "matchGame", nullable = true, foreignKey = @ForeignKey(name = "matchGame_fk"))
 //    private MatchGame matchGame;
@@ -39,14 +46,18 @@ public class Player {
         this.pass = pass;
         this.nickName = nickName;
         this.dateRegister = dateRegister;
+        this.jogando = 0;
+        this.pontuacao = 0;
     }
 
     public Player(String name) {
         this.nickName = name;
+        this.jogando = 0;
+        this.pontuacao = 0;
     }
     
-     public Player() { //Precisamos de um construtor vazio para funcionar a busca do hibernate
-       
+    public Player() { //Precisamos de um construtor vazio para funcionar a busca do hibernate
+       this.pontuacao = 0;
     }
 
     public String updaterNickName(String newName) {
@@ -92,4 +103,21 @@ public class Player {
     public void setDateRegister(LocalDate dateRegister) {
         this.dateRegister = dateRegister;
     }
+
+    public int getJogando() {
+        return jogando;
+    }
+
+    public void setJogando(int jogando) {
+        this.jogando = jogando;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao + this.pontuacao;
+    }
+    
 }

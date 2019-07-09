@@ -43,6 +43,9 @@ public class TelaPartida extends JFrame{
     private int quantidadejogadas = 0;
     private Piece piece;
     private boolean comPlayer;
+    private int indiceJogador = 0;
+    private int sequencia = 0;
+    private List<Integer> pontuacao;
     
     private int QUANTIDADE_LIMITE_JOGADAS;
     private int dimensaoBtn;
@@ -55,6 +58,7 @@ public class TelaPartida extends JFrame{
     /*Atritutos => Conpodentes de Tela*/
     private List<JLabel> lbljogadores;
     private List<JLabel> lblpontuacao;
+    private List<JLabel> lbljogando;
     
     private JPanel painelPiece;
     private JPanel painelDados;
@@ -237,13 +241,14 @@ public class TelaPartida extends JFrame{
         /*Definindo Layout que podemos alterar*/
         this.painelDados.setLayout(null);
         
-        /*Chagando as label  dos Jogados*/
+        /*Chamando as label  dos Jogados*/
         this.configurandoPlayer();
+        this.definirJogador();
         
-        this.painelDados.setBounds(this.painelPiece.getWidth(), 0, 340, this.painelPiece.getHeight());
+        /*Setar posicao e dimensao do painel de dados*/ 
+        this.painelDados.setBounds(this.painelPiece.getWidth(), 0, 400, this.painelPiece.getHeight());
         
-        System.out.println("painelDados.setBounds" + this.painelDados.getBounds());
-        System.out.println("painelPiece.setBounds" + this.painelPiece.getBounds());
+        /*Adiciona um painel no form*/
         this.add(this.painelDados);
     }
     
@@ -251,6 +256,7 @@ public class TelaPartida extends JFrame{
         /*Instaciando as Listas*/
         this.lbljogadores = new ArrayList<>();
         this.lblpontuacao = new ArrayList<>();
+        this.lbljogando = new ArrayList<>();
         
         /*Instaciando a font*/
         Font fontJogador = new Font("Hadassah Friedlaender", Font.CENTER_BASELINE, 18);//
@@ -283,11 +289,18 @@ public class TelaPartida extends JFrame{
 
                 this.lbljogadores.add(lblJogador);
 
-                lblJogador = new JLabel("0 Pontos" );
+                lblJogador = new JLabel(gamers.get(indiceJogador).getPontuacao() + " Pontos" );
                 lblJogador.setFont(fontJogador);
                 lblJogador.setBounds((this.painelPiece.getWidth() + 150 + this.ESPACAMENTO_BUTTON), (i * this.ESPACAMENTO_BUTTON + 25), 150, 25);
 
                 this.lblpontuacao.add(lblJogador);
+                
+                lblJogador = new JLabel("*");
+                //lblJogador.setOpaque(false);
+                lblJogador.setIcon(this.piece.ImgConfig("pokebola", 25));
+                lblJogador.setBounds((this.painelPiece.getWidth()+ 250 + 2 * this.ESPACAMENTO_BUTTON), (i *this.ESPACAMENTO_BUTTON + 22), 30, 36);
+
+                this.lbljogando.add(lblJogador);
                 
                 
             }
@@ -308,7 +321,44 @@ public class TelaPartida extends JFrame{
         for(int j = 0; j < this.lbljogadores.size(); j++){
             this.painelDados.add(this.lbljogadores.get(j));
             this.painelDados.add(this.lblpontuacao.get(j));
+            this.painelDados.add(this.lbljogando.get(j));
         }
+        
+        this.gamers.get(0).setJogando(1);
+    }
+    
+    private void pontuacao(){
+        sequencia++;
+        gamers.get(indiceJogador).setPontuacao(this.valorAcerto * this.sequencia);
+        System.out.println("Valor do acerto " + this.valorAcerto);
+        this.lblpontuacao.get(indiceJogador).setText(gamers.get(indiceJogador).getPontuacao() + " Pontos");
+    }
+    
+    private void definirJogador(){
+        int i = 0;
+        for(Player jogador : this.gamers){ 
+            if(jogador.getJogando() == 1){
+                this.lbljogando.get(i).setVisible(true);
+                //lblJogador.setFont(fontJogador);
+            }else{
+//                this.lbljogadores.get(i).setVisible(false);
+//                this.lblpontuacao.get(i).setVisible(false);
+                  this.lbljogando.get(i).setVisible(false);
+            }
+            i++;
+        }
+    }
+    
+    private void alterandoJogador(){
+        gamers.get(indiceJogador).setJogando(0);
+                                
+        if(indiceJogador == gamers.size() - 1){
+            indiceJogador = -1;
+        }
+        indiceJogador++;
+        gamers.get(indiceJogador).setJogando(1);
+
+        definirJogador();
     }
     
     /*Funções de Eventos*/
@@ -335,16 +385,21 @@ public class TelaPartida extends JFrame{
                             //Se os pares foram seleceionadas 
                             
                             if(listaControleSelecionados.size() > 1){
-                            //Deixar os botões com estado OCULTO
+                                //Deixar os botões com estado OCULTO
                                 for(ControleBotoesSelecionados cbs: listaControleSelecionados){
                                     cbs.zerarSelecoes();
                                 }
+                                
+                                sequencia = 0;
+                                alterandoJogador();
+                            }else{
+                                pontuacao();                                
                             }
                             
                             quantidadejogadas = 0;
                             listaControleSelecionados.clear();
                         }
-                        break; //Economicar Processamento
+                        break; //Economizar Processamento
                         
                     }
                 }
@@ -356,14 +411,29 @@ public class TelaPartida extends JFrame{
     }
     
     private void endGame(){
-        int i = 0;
+        int i = 0, j = 0;
         for(ControleBotoesSelecionados cont : listaControle){
             i++;
             if(cont.getReferenciaBotoes().values().contains(EstadoBotoes.OCULTO)){
                 return;
             }
         }
-        JOptionPane.showMessageDialog(null, "Partida Finalizada");
+        
+         for(i=1; i < gamers.size(); i++){
+            if(gamers.get(i).getPontuacao() > gamers.get(j).getPontuacao()){
+                j = i;
+            }
+        }
+        String caminhoImg = (getClass().getResource("/ImgConfig/youWin.png")).toString();
+        String msg = "<html> <body font-family=\"Times New Roman\"> "
+                + "<font size=\"6\"><center>"
+                + "<b>Partida finalizada </b><br>"
+                + " O <b>" + gamers.get(j).getNickName() + "</b> Foi o CAMPEÃO <br>"
+                + "Somando " + gamers.get(j).getPontuacao() + " Pontos."
+                + "</center></font></body></html>";
+        
+       
+        JOptionPane.showMessageDialog(null, msg, "Partida",0,piece.ImgConfig("youWin", 100));
         
     }
     

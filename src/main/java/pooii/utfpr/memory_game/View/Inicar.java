@@ -23,9 +23,16 @@ public class Inicar {
     public static void main(String[] args) {
         
         GenericDAO<Player> playerDAO = new GenericDAOImpl<>();
-        List<Player> gamers = playerDAO.listAll(Player.class);
+        Player p = new Player("Ana Paula");
+        playerDAO.save(p);
         
-        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.FORFRESHMEN);
+        List<Player> gamers = playerDAO.listAll(Player.class);
+        gamers.remove(3);
+        gamers.remove(1);
+        
+        
+        
+        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
         
         TelaPartida tp = new TelaPartida(dif, gamers);
         

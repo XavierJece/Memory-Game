@@ -75,6 +75,7 @@ public class ControleBotoesSelecionados {
            break;
            case SELECIONADO: //Exibir
 //             btn.setEnabled(Boolean.FALSE);
+
                btn.setIcon(this.piece.createImg(this.imgFrenteBotao, btn.getWidth()));
            break;
            case ENCONTRADO:
@@ -84,10 +85,9 @@ public class ControleBotoesSelecionados {
        }
    }
    
-   
    public void zerarSelecoes(){
        this.alterarEstadoTodosBtn(EstadoBotoes.OCULTO);
-   }
+   }   
    
    public Boolean isTodasSelecionadas(){
        for(EstadoBotoes b: this.referenciaBotoes.values()){
@@ -98,9 +98,6 @@ public class ControleBotoesSelecionados {
        }
        return true;
    }
-   
-   
-   
    
    /*Gets and Sets*/
    public String getImgCostasBotao() {

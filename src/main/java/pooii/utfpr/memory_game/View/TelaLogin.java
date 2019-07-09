@@ -45,6 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnAcessar = new javax.swing.JButton();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,7 +71,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(120, 250, 77, 40);
+        btnAcessar.setBounds(120, 250, 71, 40);
 
         txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +84,8 @@ public class TelaLogin extends javax.swing.JFrame {
         txtSenha.setText("jPasswordField1");
         getContentPane().add(txtSenha);
         txtSenha.setBounds(140, 190, 150, 30);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 20, 380, 270);
 
         pack();
         setLocationRelativeTo(null);
@@ -143,6 +146,7 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcessar;
     private javax.swing.JButton btnSair;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
