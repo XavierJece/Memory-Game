@@ -20,9 +20,8 @@ import pooii.utfpr.memory_game.Model.VO.modalidades.*;
  */
 public class SimpleModalityFactory {
     
-    public static Difficulty createModality(ModalityEnum nome)
-    {
-        int flag = 1;
+    public static Difficulty createModality(ModalityEnum nome){
+        
         Difficulty modality = null;
         GenericDAO<Difficulty> modalityDAO = new GenericDAOImpl<>();
         
