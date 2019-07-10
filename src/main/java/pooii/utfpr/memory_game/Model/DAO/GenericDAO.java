@@ -25,4 +25,6 @@ public interface GenericDAO<T> {
     
     void delete(T objeto);
     
+    public boolean verificaLogin(String nome, String senha);
+    
 }

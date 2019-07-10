@@ -10,7 +10,9 @@ import java.util.List;
 import static javafx.scene.input.KeyCode.T;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import pooii.utfpr.memory_game.Model.DAO.connectionHibernate;
+import pooii.utfpr.memory_game.Model.VO.Player;
 
 /**
  *
@@ -34,18 +36,44 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     @Override
     public T listOne(String pkName, int pkValue, Class clazz) {
         String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE t." + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
+        
+        try {
+            Query query = this.manager.createQuery(jpql);
+            Object obj = query.getSingleResult();
+            
+            return (T) obj;
+        } catch (Exception e) {
+            connectionHibernate.close();
+            JOptionPane.showMessageDialog(null, "ERROR: " + e);
+        }
+        
+        return null;
+    }
+    
+    @Override
+    public T listOne(String pkName, String pkValue, Class clazz) {
+        String jpql = "SELECT t FROM " + clazz.getTypeName() + " AS t WHERE t." + pkName + " = " + pkValue;
         Query query = this.manager.createQuery(jpql);
         Object obj = query.getSingleResult();
         return (T) obj;
     }
     
-    @Override
+    /*@Override
     public T listOne(String pkName, String pkValue, Class clazz) {
-        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE t." + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
-        Query query = this.manager.createQuery(jpql);
-        Object obj = query.getSingleResult();
-        return (T) obj;
-    }
+        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE " + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
+        
+        try {
+            Query query = this.manager.createQuery(jpql);
+            Object obj = query.getSingleResult();
+            
+            return (T) obj;
+        } catch (Exception e) {
+            connectionHibernate.close();
+            JOptionPane.showMessageDialog(null, "ERROR: " + e);
+        }
+        
+        return null;
+    }*/
 
     @Override
     public List listAll(Class clazz) {
@@ -68,4 +96,30 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
        manager.remove(objeto);
        manager.getTransaction().commit();
     }
+    
+    /**Função para rerificar se o usuario tem cadastro ou não.
+     *
+     * @param nome o nikcName do usuario
+     * @param senha o nikcName do usuario
+     * @return true para existe o login, false para não existe.
+     */
+    @Override
+    public boolean verificaLogin( String nome, String senha){
+        try {
+             Player p = (Player) this.listOne("nickName", nome, Player.class);
+            
+            
+            if(!p.getPass().equals(senha)){
+                return false;
+            }else{
+                return true;
+            }
+        } catch (Exception e) {
+            connectionHibernate.close();
+            JOptionPane.showMessageDialog(null, "ERROR: " + e);
+            return false;
+        }
+        
+        
+    } 
 }

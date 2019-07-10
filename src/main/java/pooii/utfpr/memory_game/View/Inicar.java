@@ -9,6 +9,7 @@ import java.util.List;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.VO.Player;
+import pooii.utfpr.memory_game.Model.VO.Statistics;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
@@ -30,7 +31,7 @@ public class Inicar {
         gamers.remove(3);
         gamers.remove(1);
         
-        
+        Statistics sta = new Statistics();
         
         Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
         
