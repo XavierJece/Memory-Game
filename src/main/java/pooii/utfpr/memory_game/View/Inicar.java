@@ -24,11 +24,16 @@ public class Inicar {
     public static void main(String[] args) {
         
         GenericDAO<Player> playerDAO = new GenericDAOImpl<>();
-        Player p = new Player("Ana Paula");
+        Player p = new Player("ISRAEL");
         playerDAO.save(p);
         
         List<Player> gamers = playerDAO.listAll(Player.class);
+        gamers.remove(7);
+        gamers.remove(6);
+        gamers.remove(5);
+        gamers.remove(4);
         gamers.remove(3);
+        gamers.remove(2);
         gamers.remove(1);
         
         Statistics sta = new Statistics();
