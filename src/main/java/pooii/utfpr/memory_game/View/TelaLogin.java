@@ -101,7 +101,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         getContentPane().add(lblClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, 10, 20));
 
-        lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImgConfig/telaLogin3.jpg"))); // NOI18N
+        lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/telaLogin.jpg"))); // NOI18N
         getContentPane().add(lblFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
 
         pack();
@@ -140,6 +140,9 @@ public class TelaLogin extends javax.swing.JFrame {
         
         if(playerDAO.verificaLogin(usuario, senha)){
             JOptionPane.showMessageDialog(null, "Entrou!");
+            this.dispose();
+            TelaDefineModo tela = new TelaDefineModo(usuario);
+            tela.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nem vem!");
         }
