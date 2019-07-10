@@ -105,21 +105,17 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      */
     @Override
     public boolean verificaLogin( String nome, String senha){
-        try {
-             Player p = (Player) this.listOne("nickName", nome, Player.class);
-            
-            
-            if(!p.getPass().equals(senha)){
-                return false;
-            }else{
-                return true;
-            }
-        } catch (Exception e) {
-            connectionHibernate.close();
-            JOptionPane.showMessageDialog(null, "ERROR: " + e);
+        String jpql =  "SELECT COUNT(t) FROM Player t WHERE t.nickName = :nome AND t.pass = :senha";
+        Query query = this.manager.createQuery(jpql);
+        query.setParameter("nome", nome);
+        query.setParameter("senha", senha);
+        
+        String i = query.getSingleResult().toString();             
+
+        if(i.equals("1")){
+            return true;
+        }else{
             return false;
         }
-        
-        
     } 
 }

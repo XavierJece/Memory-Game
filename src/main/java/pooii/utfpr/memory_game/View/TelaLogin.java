@@ -6,9 +6,11 @@
 package pooii.utfpr.memory_game.View;
 
 import java.awt.Color;
+import static java.time.Clock.system;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.RN.GenericRN;
@@ -84,6 +86,12 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 150, 40));
+
+        lblCriarConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCriarContaMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 60, 10));
 
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,6 +146,12 @@ public class TelaLogin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_lblEntrarMouseClicked
 
+    private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
+        this.dispose();
+        TelaCadastro telaCad = new TelaCadastro();
+        telaCad.setVisible(true);
+    }//GEN-LAST:event_lblCriarContaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -169,7 +183,8 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                TelaLogin tela = new TelaLogin();
+                tela.setVisible(true);
             }
         });
     }
