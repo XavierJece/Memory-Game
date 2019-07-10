@@ -5,31 +5,26 @@
  */
 package pooii.utfpr.memory_game.View;
 
-import pooii.utfpr.memory_game.Model.VO.Piece;
-import pooii.utfpr.memory_game.Model.VO.PieceEnum;
+import java.awt.Color;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
+import javax.swing.JOptionPane;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
+import pooii.utfpr.memory_game.Model.RN.GenericRN;
+import pooii.utfpr.memory_game.Model.RN.PlayerRN;
+import pooii.utfpr.memory_game.Model.VO.Player;
 
 /**
  *
- * @author a1980009
+ * @author Matheus_CRF
  */
 public class TelaLogin extends javax.swing.JFrame {
-    /*Atributos*/
-    Piece img;
+    int mousePx, mousePy;
     
-    /**
-     * Creates new form TelaLogin
-     */
     public TelaLogin() {
         initComponents();
-        
-        //Definindo tamanhho FIXO e posição da janeta
-        this.setBounds(0,0, 500, 500);
-        this.setResizable(Boolean.FALSE);
-        this.setLocationRelativeTo(null);
-        
-        //Criacao de imagem
-        img = new Piece();
-        
+        //this.setBackground(new Color(0,0,0,0));
     }
 
     /**
@@ -41,72 +36,107 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSair = new javax.swing.JButton();
-        btnAcessar = new javax.swing.JButton();
-        txtLogin = new javax.swing.JTextField();
+        lblBarra = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
-        jPanel1 = new javax.swing.JPanel();
+        txtUsuario = new javax.swing.JTextField();
+        lblEntrar = new javax.swing.JLabel();
+        lblCriarConta = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
+        lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addMouseListener(new java.awt.event.MouseAdapter() {
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBarra.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lblBarraMouseDragged(evt);
+            }
+        });
+        lblBarra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblBarraMousePressed(evt);
+            }
+        });
+        getContentPane().add(lblBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 20));
+
+        txtSenha.setBorder(null);
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 240, 30));
+
+        txtUsuario.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        txtUsuario.setBorder(null);
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 240, 40));
+        txtUsuario.getAccessibleContext().setAccessibleName("");
+
+        lblEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
+                lblEntrarMouseClicked(evt);
             }
         });
-        getContentPane().setLayout(null);
+        getContentPane().add(lblEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 150, 40));
+        getContentPane().add(lblCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 60, 10));
 
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCloseMouseClicked(evt);
             }
         });
-        getContentPane().add(btnSair);
-        btnSair.setBounds(220, 250, 70, 40);
+        getContentPane().add(lblClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, 10, 20));
 
-        btnAcessar.setText("Acessar");
-        btnAcessar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcessarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(120, 250, 71, 40);
-
-        txtLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLoginActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtLogin);
-        txtLogin.setBounds(140, 140, 150, 30);
-
-        txtSenha.setText("jPasswordField1");
-        getContentPane().add(txtSenha);
-        txtSenha.setBounds(140, 190, 150, 30);
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 20, 380, 270);
+        lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImgConfig/telaLogin3.jpg"))); // NOI18N
+        getContentPane().add(lblFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAcessarActionPerformed
+    private void lblBarraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarraMouseDragged
+        int cordenadaX = evt.getXOnScreen();
+        int cordenadaY = evt.getYOnScreen();
+        
+        this.setLocation(cordenadaX-mousePx, cordenadaY-mousePy);
+    }//GEN-LAST:event_lblBarraMouseDragged
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSairActionPerformed
+    private void lblBarraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarraMousePressed
+       mousePx = evt.getX();
+       mousePy = evt.getY();
+    }//GEN-LAST:event_lblBarraMousePressed
 
-    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoginActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-        System.out.println(evt.getButton());
-    }//GEN-LAST:event_formMouseClicked
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+       System.exit(0);
+    }//GEN-LAST:event_lblCloseMouseClicked
+
+    private void lblEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEntrarMouseClicked
+        GenericRN<Player> playerDAO = new GenericRN<>();
+        
+        String usuario = this.txtUsuario.getText();
+        String senha = new String(this.txtSenha.getPassword());
+        
+        if(playerDAO.verificaLogin(usuario, senha)){
+            JOptionPane.showMessageDialog(null, "Entrou!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Nem vem!");
+        }
+        
+    }//GEN-LAST:event_lblEntrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -134,6 +164,7 @@ public class TelaLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -144,10 +175,12 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAcessar;
-    private javax.swing.JButton btnSair;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtLogin;
+    private javax.swing.JLabel lblBarra;
+    private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblCriarConta;
+    private javax.swing.JLabel lblEntrar;
+    private javax.swing.JLabel lblFundo;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
