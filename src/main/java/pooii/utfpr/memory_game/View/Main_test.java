@@ -5,6 +5,7 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
@@ -27,33 +28,47 @@ public class Main_test {
         
         //PlayerRN playerRN= new PlayerRN();
         
-        //MatchGame match = new MatchGame();
-        Player player1 = new Player("Giuvane");
-        Player player2 = new Player("Goku");
-        Player player3 = new Player("Vidotto");
-        Player player4 = new Player("Jecé");
-                
-        List<Player> players = new ArrayList<Player>();
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
+//        MatchGame match = new MatchGame();
+//        Player player1 = new Player("Giuvane");
+//        Player player2 = new Player("Goku");
+//        Player player3 = new Player("Vidotto");
+//        Player player4 = new Player("goku");
+//        player4.setEmail("goku@hotail.com");
+//        player4.setDateRegister(LocalDate.now());
+//                
+//        List<Player> players = new ArrayList<Player>();
+//        players.add(player1);
+//        players.add(player2);
+//        players.add(player3);
+         
+         GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
+//        
+        List<Player> players2 = genericDAOPlayer.listAll(Player.class);
+        players2.remove(2);
+        players2.remove(1);
+//        players2.add(player4);
+//        players2.add(player1);
+//        
+        MatchGame mg1 = new MatchGame(ModalityEnum.MIDDLE, players2);
+        mg1.getStatidtics().get(0).setBiggerSequence(10);
+        mg1.getStatidtics().get(0).setPontuacao(520);
+        mg1.getStatidtics().get(0).setQuantidadeJogadas(102);
+        mg1.getStatidtics().get(1).setBiggerSequence(52);
+        mg1.getStatidtics().get(1).setPontuacao(426);
+        mg1.getStatidtics().get(1).setQuantidadeJogadas(742);
+
         
-        List<Player> players2 = new ArrayList<Player>();
-        players2.add(player4);
-        players2.add(player1);
-        
-        MatchGame mg1 = new MatchGame(ModalityEnum.EASY, players2);
-        
-        MatchGame mg2 = new MatchGame(ModalityEnum.FORFRESHMEN, players);
-        
-        players.add(player4);
-        
-        MatchGame mg3 = new MatchGame(ModalityEnum.EASY, players);
+//        
+//        MatchGame mg2 = new MatchGame(ModalityEnum.FORFRESHMEN, players);
+//        
+//        players.add(player4);
+//        
+//        MatchGame mg3 = new MatchGame(ModalityEnum.EASY, players);
         
         
         //Statistics sta = new Statistics();
 
-//        GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
+        
         
         GenericDAO<MatchGame> genericDAOMathGame = new GenericDAOImpl<MatchGame>();
      
@@ -65,13 +80,13 @@ public class Main_test {
         
         genericDAOMathGame.save(mg1);
         //genericDAOMathGame.delete(mg1);
-        genericDAOMathGame.save(mg2);
+//        genericDAOMathGame.save(mg2);
         //playerRN.save(player);
-        genericDAOMathGame.save(mg3);
+//        genericDAOMathGame.save(mg3);
         
         
         
-        System.out.println("Modalidade: " + mg2.getModallity().getName() );
+//        System.out.println("Modalidade: " + mg2.getModallity().getName() );
 
         
         // Esta dentro da classe PlayerDAOImp

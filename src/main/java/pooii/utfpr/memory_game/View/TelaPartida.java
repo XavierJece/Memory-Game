@@ -327,10 +327,9 @@ public class TelaPartida extends JFrame{
         this.gamers.get(0).setJogando(1);
     }
     
-    private void pontuacao(){
+private void pontuacao(){
         sequencia++;
         gamers.get(indiceJogador).setPontuacao(this.valorAcerto * this.sequencia);
-        System.out.println("Valor do acerto " + this.valorAcerto);
         this.lblpontuacao.get(indiceJogador).setText(gamers.get(indiceJogador).getPontuacao() + " Pontos");
     }
     

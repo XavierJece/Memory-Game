@@ -6,6 +6,7 @@
 package pooii.utfpr.memory_game.Control;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,6 +28,7 @@ import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 import pooii.utfpr.memory_game.Model.VO.Player;
+import pooii.utfpr.memory_game.Model.VO.Statistics;
 import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
 import pooii.utfpr.memory_game.View.TelaPartida;
 
@@ -51,9 +53,10 @@ public class MatchGame {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Difficulty difficulty;
     
-    private int biggerSequence; 
-    private LocalDate timeBegin;
-    private LocalDate timeEnd;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Statistics > statistics;
+    
+    private boolean mutiplayer;
     
     @Transient
     TelaPartida tp;
@@ -87,15 +90,23 @@ public class MatchGame {
     */
     public MatchGame(ModalityEnum mode, List<Player> gamers) {
         
-        //Caso a lista estiver com também 0, como fazer para não ser criada?
+        this.mutiplayer = ((gamers.size() == 1) ? Boolean.FALSE : Boolean.TRUE);
+        
+//        if(gamers.size() == 1){
+//            this.mutiplayer = Boolean.FALSE;
+//        }else{
+//            this.mutiplayer = Boolean.TRUE;
+//        }
+        
+        this.statistics = new ArrayList<>();
+        for (int i = 0; i < gamers.size(); i++) {
+            this.statistics.add(new Statistics(gamers.get(i)));
+        }
         
         this.gamers = gamers;
         
-//        GenericDAO<Modallity> modaDAO = new GenericDAOImpl<>();
-//        List<Modallity> listaModal = null;
-//        System.out.println("tamanho lista " + (modaDAO.listOne("name", "", Difficulty.class)));
-        
         this.difficulty = SimpleModalityFactory.createModality(mode); 
+        
         this.tp = new TelaPartida(this.difficulty, this.gamers);
         
     }
@@ -143,21 +154,15 @@ public class MatchGame {
         this.difficulty = modallity;
     }
 
-    public LocalDate getTimeBegin() {
-        return timeBegin;
+    public List<Statistics> getStatidtics() {
+        return statistics;
     }
 
-    public void setTimeBegin(LocalDate timeBegin) {
-        this.timeBegin = timeBegin;
+    public void setStatidtics(List<Statistics> statidtics) {
+        this.statistics = statidtics;
     }
-
-    public LocalDate getTimeEnd() {
-        return timeEnd;
-    }
-
-    public void setTimeEnd(LocalDate timeEnd) {
-        this.timeEnd = timeEnd;
-    }
+    
+    
     
     
 }

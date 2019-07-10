@@ -34,46 +34,6 @@ import pooii.utfpr.memory_game.Control.MatchGame;
     private int quantityPiece;
     
     private String description;
-
-    public int getLimiteTime() {
-        return limiteTime;
-    }
-
-    public void setLimiteTime(int limiteTime) {
-        this.limiteTime = limiteTime;
-    }
-
-    public int getQuatityColumn() {
-        return quatityColumn;
-    }
-
-    public void setQuatityColumn(int quatityColumn) {
-        this.quatityColumn = quatityColumn;
-    }
-
-    public int getDimensionPiece() {
-        return dimensionPiece;
-    }
-
-    public void setDimensionPiece(int dimensionPiece) {
-        this.dimensionPiece = dimensionPiece;
-    }
-
-    public int getValorAcerto() {
-        return valorAcerto;
-    }
-
-    public void setValorAcerto(int valorAcerto) {
-        this.valorAcerto = valorAcerto;
-    }
-
-    public int getQuatityCombination() {
-        return quatityCombination;
-    }
-
-    public void setQuatityCombination(int quatityCombination) {
-        this.quatityCombination = quatityCombination;
-    }
     
     private int limiteTime;
     private int quatityColumn;
@@ -121,6 +81,46 @@ import pooii.utfpr.memory_game.Control.MatchGame;
 
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
+    }
+    
+        public int getLimiteTime() {
+        return limiteTime;
+    }
+
+    public void setLimiteTime(int limiteTime) {
+        this.limiteTime = limiteTime;
+    }
+
+    public int getQuatityColumn() {
+        return quatityColumn;
+    }
+
+    public void setQuatityColumn(int quatityColumn) {
+        this.quatityColumn = quatityColumn;
+    }
+
+    public int getDimensionPiece() {
+        return dimensionPiece;
+    }
+
+    public void setDimensionPiece(int dimensionPiece) {
+        this.dimensionPiece = dimensionPiece;
+    }
+
+    public int getValorAcerto() {
+        return valorAcerto;
+    }
+
+    public void setValorAcerto(int valorAcerto) {
+        this.valorAcerto = valorAcerto;
+    }
+
+    public int getQuatityCombination() {
+        return quatityCombination;
+    }
+
+    public void setQuatityCombination(int quatityCombination) {
+        this.quatityCombination = quatityCombination;
     }
     
 
