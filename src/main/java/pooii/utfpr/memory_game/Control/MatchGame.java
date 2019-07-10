@@ -49,7 +49,6 @@ public class MatchGame {
     private List<Player> gamers;
     
     @OneToOne(cascade = CascadeType.PERSIST)
-
     private Difficulty difficulty;
     
     private int biggerSequence; 
