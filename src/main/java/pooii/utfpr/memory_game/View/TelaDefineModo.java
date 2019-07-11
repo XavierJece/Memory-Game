@@ -5,6 +5,7 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import javax.swing.JOptionPane;
 import javax.transaction.Transactional;
 import pooii.utfpr.memory_game.Model.DAO.connectionHibernate;
 import pooii.utfpr.memory_game.Model.RN.GenericRN;
@@ -33,7 +34,7 @@ public class TelaDefineModo extends javax.swing.JFrame {
     public TelaDefineModo() {
         initComponents();
         
-        this.telaDificuldade = new TelaDificuldadeSinglePlayer(this.player);
+        this.telaDificuldade = new TelaDificuldadeSinglePlayer(this.player, this);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,7 +93,19 @@ public class TelaDefineModo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblSingleMultiPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 185, 150, 50));
+
+        lblEstatisticas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEstatisticasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblEstatisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 150, 50));
+
+        lblRanking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRankingMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 150, 50));
 
         lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/TelaDefineModo.jpg"))); // NOI18N
@@ -122,15 +135,31 @@ public class TelaDefineModo extends javax.swing.JFrame {
 
     private void lblSinglePlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSinglePlayerMouseClicked
         this.dispose();
-        this.telaDificuldade = new TelaDificuldadeSinglePlayer(player);
+        this.telaDificuldade = new TelaDificuldadeSinglePlayer(player, this);
         this.telaDificuldade.setVisible(true);
     }//GEN-LAST:event_lblSinglePlayerMouseClicked
 
     private void lblSingleMultiPlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSingleMultiPlayerMouseClicked
         this.dispose();
-        this.telaMultiPlayer = new TelaDificuldadeMultiplayer(player);
+        this.telaMultiPlayer = new TelaDificuldadeMultiplayer(player, this);
         this.telaMultiPlayer.setVisible(true);
     }//GEN-LAST:event_lblSingleMultiPlayerMouseClicked
+
+    private void lblRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRankingMouseClicked
+        // TODO add your handling code here:
+        
+        this.setVisible(false);
+        new TelaRanking(this).setVisible(true);
+    }//GEN-LAST:event_lblRankingMouseClicked
+
+    private void lblEstatisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstatisticasMouseClicked
+        String msg = "<html><body><center><font size=\" 14px \">"
+                + "Sistema em Manutenção <br>"
+                + "Tente novamente mais tarde!"
+                + "</font></center></body></html>";
+        
+        JOptionPane.showMessageDialog(null, msg, "AVISO!", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_lblEstatisticasMouseClicked
 
     /**
      * @param args the command line arguments

@@ -123,4 +123,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
         }
     }
     
+    @Override
+    public List listAll(Class clazz, String order, int limite, String column){
+        
+        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t ORDER BY  t." + column + " " + order;
+        Query query = manager.createQuery(jpql); 
+        List<T> obj = query.getResultList();
+        return obj;
+    }
+    
 }

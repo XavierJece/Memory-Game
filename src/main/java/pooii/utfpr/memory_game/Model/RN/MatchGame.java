@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pooii.utfpr.memory_game.Control;
+package pooii.utfpr.memory_game.Model.RN;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -93,12 +93,6 @@ public class MatchGame {
 
         this.mutiplayer = ((gamers.size() == 1) ? Boolean.FALSE : Boolean.TRUE);
         
-//        if(gamers.size() == 1){
-//            this.mutiplayer = Boolean.FALSE;
-//        }else{
-//            this.mutiplayer = Boolean.TRUE;
-//        }
-        
         this.statistics = new ArrayList<>();
         for (int i = 0; i < gamers.size(); i++) {
             this.statistics.add(new Statistics(gamers.get(i)));
@@ -106,10 +100,7 @@ public class MatchGame {
         
         this.gamers = gamers;
         
-        this.difficulty = SimpleModalityFactory.createModality(mode); 
-        System.out.println("Chegou aqui");
-//        this.tp = new TelaPartida(this.);
-        System.out.println("Chegou aqui2");
+        this.difficulty = SimpleModalityFactory.createModality(mode);
         
     }
     

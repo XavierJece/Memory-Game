@@ -8,7 +8,7 @@ package pooii.utfpr.memory_game.Model.VO.factory;
 import com.sun.prism.impl.BufferUtil;
 import java.util.ArrayList;
 import java.util.List;
-import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
+import pooii.utfpr.memory_game.Model.RN.EstadoBotoes;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;

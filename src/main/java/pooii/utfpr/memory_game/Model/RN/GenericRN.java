@@ -39,6 +39,10 @@ public class GenericRN<T> {
         return genericDAO.listAll(clazz);
     }
     
+    public List listAll(Class clazz, String order, int limite, String column){
+        return genericDAO.listAll(clazz, order, limite, column);
+    }
+    
     public  T findOne(String pkName, String pkValue, Class clazz){
         return (T) genericDAO.listOne(pkName, pkValue, clazz);
     }

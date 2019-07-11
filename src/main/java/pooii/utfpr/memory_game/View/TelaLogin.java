@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.RN.GenericRN;
-import pooii.utfpr.memory_game.Model.RN.PlayerRN;
 import pooii.utfpr.memory_game.Model.VO.Player;
 
 /**

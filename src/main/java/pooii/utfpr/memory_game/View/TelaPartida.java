@@ -27,9 +27,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
-import pooii.utfpr.memory_game.Control.MatchGame;
-import pooii.utfpr.memory_game.Control.Regras.ControleBotoesSelecionados;
-import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
+import pooii.utfpr.memory_game.Model.RN.MatchGame;
+import pooii.utfpr.memory_game.Model.RN.ControleBotoesSelecionados;
+import pooii.utfpr.memory_game.Model.RN.EstadoBotoes;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.VO.Piece;
@@ -203,7 +203,7 @@ public class TelaPartida extends JFrame{
         definirPanelDados();
         
          /*Para conseguir Fechar*/
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         /*Definico a dimenção da tela*/
         int tamanhoTelaWidth = (this.painelPiece.getWidth() + this.painelDados.getWidth());
@@ -211,7 +211,7 @@ public class TelaPartida extends JFrame{
                 
         this.setBounds(new Rectangle(tamanhoTelaWidth, tamanhoTelaHeight));
         this.setLocationRelativeTo(null); //Para deixar centralizado
-//        this.setResizable(Boolean.FALSE); //Para não redimencionar
+        this.setResizable(Boolean.FALSE); //Para não redimencionar
         
         /*Para conseguir ver*/
         this.setVisible(true);
@@ -222,6 +222,9 @@ public class TelaPartida extends JFrame{
         
         /*Definindo Layout que podemos alterar*/
         this.painelPiece.setLayout(null);
+        
+        /*Definindo Dor de fundo*/
+        this.painelPiece.setBackground(new Color(148, 207, 185));
         
         /*Add Evento no Panel*/
         this.painelPiece.addMouseListener(this.opcoesPartida());
@@ -248,6 +251,9 @@ public class TelaPartida extends JFrame{
         
         /*Definindo Layout que podemos alterar*/
         this.painelDados.setLayout(null);
+        
+        /*Definindo Dor de fundo*/
+        this.painelDados.setBackground(new Color(148, 207, 185));
         
         /*Chamando as label  dos Jogados*/
         this.configurandoPlayer();
@@ -458,6 +464,8 @@ public class TelaPartida extends JFrame{
         GenericDAO<MatchGame> mgDAO = new GenericDAOImpl<MatchGame>();
         
         mgDAO.save(mg);
+        
+        this.dispose();
         
         
     }
