@@ -40,9 +40,13 @@ public class Statistics {
     
     /*Contrutor*/
     public Statistics() {
+        this.pontuacao = 0;
+        this.biggerSequence = 0;
     }
 
     public Statistics(Player player) {
+        this.pontuacao = 0;
+        this.biggerSequence = 0;
         this.player = player;
     }
     
@@ -102,15 +106,15 @@ public class Statistics {
     }
 
     public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
+        this.pontuacao = pontuacao + this.pontuacao;
     }
 
     public int getQuantidadeJogadas() {
         return quantidadeJogadas;
     }
 
-    public void setQuantidadeJogadas(int quantidadeJogadas) {
-        this.quantidadeJogadas = quantidadeJogadas;
+    public void setQuantidadeJogadas() {
+        this.quantidadeJogadas += 1;
     }
     
     

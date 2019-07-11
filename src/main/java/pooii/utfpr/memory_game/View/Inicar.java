@@ -5,14 +5,9 @@
  */
 package pooii.utfpr.memory_game.View;
 
-import java.util.List;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
 import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.VO.Player;
-import pooii.utfpr.memory_game.Model.VO.Statistics;
-import pooii.utfpr.memory_game.Model.VO.factory.SimpleModalityFactory;
-import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
-import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 
 /**
  *
@@ -26,21 +21,6 @@ public class Inicar {
         GenericDAO<Player> playerDAO = new GenericDAOImpl<>();
 //        
         Player gamers = (Player) playerDAO.listAll(Player.class).get(0);
-//        
-////        gamers.remove(8);
-////        gamers.remove(7);
-////        gamers.remove(6);
-////        gamers.remove(5);
-////        gamers.remove(4);
-////        gamers.remove(3);
-////        gamers.remove(2);
-////        gamers.remove(1);
-//        
-//        Statistics sta = new Statistics();
-//        
-//        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
-//        
-//        TelaPartida tp = new TelaPartida(dif, gamers);
         
         TelaDificuldadeSinglePlayer td = new TelaDificuldadeSinglePlayer(gamers);
         td.setVisible(true);
