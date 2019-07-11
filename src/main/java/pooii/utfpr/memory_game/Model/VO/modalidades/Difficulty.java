@@ -13,7 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import pooii.utfpr.memory_game.Control.MatchGame;
+import pooii.utfpr.memory_game.Model.RN.MatchGame;
 
 /**
  *

@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
-import pooii.utfpr.memory_game.Control.MatchGame;
+import pooii.utfpr.memory_game.Model.RN.MatchGame;
 
 @Entity
 public class Statistics {

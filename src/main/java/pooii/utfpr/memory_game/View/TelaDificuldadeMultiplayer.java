@@ -8,7 +8,7 @@ package pooii.utfpr.memory_game.View;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import pooii.utfpr.memory_game.Control.MatchGame;
+import pooii.utfpr.memory_game.Model.RN.MatchGame;
 import pooii.utfpr.memory_game.Model.VO.Player;
 import pooii.utfpr.memory_game.Model.VO.modalidades.ModalityEnum;
 
