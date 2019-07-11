@@ -19,6 +19,7 @@ public class TelaDefineModo extends javax.swing.JFrame {
     private Player player;
     
     private TelaDificuldadeSinglePlayer telaDificuldade;
+    private TelaDificuldadeMultiplayer telaMultiPlayer;
     
     public TelaDefineModo(Player p) {
         initComponents();
@@ -26,7 +27,7 @@ public class TelaDefineModo extends javax.swing.JFrame {
         this.player = p;
         lblNome.setText(this.player.getNickName());
         
-        this.telaDificuldade = new TelaDificuldadeSinglePlayer(player);
+        
     }
     
     public TelaDefineModo() {
@@ -121,11 +122,14 @@ public class TelaDefineModo extends javax.swing.JFrame {
 
     private void lblSinglePlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSinglePlayerMouseClicked
         this.dispose();
+        this.telaDificuldade = new TelaDificuldadeSinglePlayer(player);
         this.telaDificuldade.setVisible(true);
     }//GEN-LAST:event_lblSinglePlayerMouseClicked
 
     private void lblSingleMultiPlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSingleMultiPlayerMouseClicked
-        // TODO add your handling code here:
+        this.dispose();
+        this.telaMultiPlayer = new TelaDificuldadeMultiplayer(player);
+        this.telaMultiPlayer.setVisible(true);
     }//GEN-LAST:event_lblSingleMultiPlayerMouseClicked
 
     /**
