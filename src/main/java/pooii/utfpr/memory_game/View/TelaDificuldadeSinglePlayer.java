@@ -22,12 +22,15 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
     private int mousePx, mousePy;
     private MatchGame mg = null;
     private List<Player> players;
+    private TelaDefineModo telaModo;
     
-    public TelaDificuldadeSinglePlayer(Player p) {
+    public TelaDificuldadeSinglePlayer(Player p, TelaDefineModo telaModo) {
         initComponents();
         
         this.players = new ArrayList<>();
         this.players.add(p);
+        
+        this.telaModo = telaModo;
         
     }
     
@@ -54,6 +57,7 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
         lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(null);
 
         lblBarra.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -121,7 +125,7 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
         getContentPane().add(lblFundo);
         lblFundo.setBounds(0, 0, 458, 470);
 
-        setSize(new java.awt.Dimension(478, 516));
+        setSize(new java.awt.Dimension(462, 478));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,8 +143,8 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_lblBarraMousePressed
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        connectionHibernate.close();
-        System.exit(0);
+        this.dispose();
+        this.telaModo.setVisible(true);
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblCalourosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCalourosMouseClicked

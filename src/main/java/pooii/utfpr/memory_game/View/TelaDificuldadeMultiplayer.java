@@ -22,13 +22,16 @@ public class TelaDificuldadeMultiplayer extends javax.swing.JFrame {
     private int mousePx, mousePy;
     private MatchGame mg = null;
     private List<Player> players;
+    private TelaDefineModo telaModo;
     
     //construtor
-    public TelaDificuldadeMultiplayer(Player player) {
+    public TelaDificuldadeMultiplayer(Player player, TelaDefineModo telaModo) {
         initComponents();
         
         this.players = new ArrayList<>();
         this.players.add(player);
+        
+        this.telaModo = telaModo;
     }
     
     public TelaDificuldadeMultiplayer() {
@@ -70,6 +73,8 @@ public class TelaDificuldadeMultiplayer extends javax.swing.JFrame {
         lblMedio = new javax.swing.JLabel();
         lblDificil = new javax.swing.JLabel();
         lblSuper = new javax.swing.JLabel();
+        lblBarra = new javax.swing.JLabel();
+        lblFechar = new javax.swing.JLabel();
         lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -159,6 +164,27 @@ public class TelaDificuldadeMultiplayer extends javax.swing.JFrame {
         });
         getContentPane().add(lblSuper, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 150, 40));
 
+        lblBarra.setText("jLabel1");
+        lblBarra.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lblBarraMouseDragged(evt);
+            }
+        });
+        lblBarra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblBarraMousePressed(evt);
+            }
+        });
+        getContentPane().add(lblBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+
+        lblFechar.setText("jLabel1");
+        lblFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFecharMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 0, 20, 20));
+
         lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/dificuldadeMulti.jpg"))); // NOI18N
         getContentPane().add(lblFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
 
@@ -226,12 +252,30 @@ public class TelaDificuldadeMultiplayer extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_lblSuperMouseClicked
 
+    private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
+        this.dispose();
+        this.telaModo.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_lblFecharMouseClicked
+
+    private void lblBarraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarraMouseDragged
+        int cordenadaX = evt.getXOnScreen();
+        int cordenadaY = evt.getYOnScreen();
+        this.setLocation(cordenadaX-mousePx, cordenadaY-mousePy);
+    }//GEN-LAST:event_lblBarraMouseDragged
+
+    private void lblBarraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarraMousePressed
+        mousePx = evt.getX();
+        mousePy = evt.getY();
+    }//GEN-LAST:event_lblBarraMousePressed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblBarra;
     private javax.swing.JLabel lblCalouro;
     private javax.swing.JLabel lblDificil;
     private javax.swing.JLabel lblFacil;
+    private javax.swing.JLabel lblFechar;
     private javax.swing.JLabel lblFundo;
     private javax.swing.JLabel lblMedio;
     private javax.swing.JLabel lblSuper;
