@@ -148,28 +148,33 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblCalourosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCalourosMouseClicked
-        new TelaPartida(new MatchGame(ModalityEnum.FORFRESHMEN, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.FORFRESHMEN, this.players)).setVisible(true);
     }//GEN-LAST:event_lblCalourosMouseClicked
 
     private void lblMedioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMedioMouseClicked
-        new TelaPartida(new MatchGame(ModalityEnum.MIDDLE, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.MIDDLE, this.players)).setVisible(true);
     }//GEN-LAST:event_lblMedioMouseClicked
 
     private void lblFacilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFacilMouseClicked
-        new TelaPartida(new MatchGame(ModalityEnum.EASY, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.EASY, this.players)).setVisible(true);
     }//GEN-LAST:event_lblFacilMouseClicked
 
     private void lblDificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDificilMouseClicked
-        new TelaPartida(new MatchGame(ModalityEnum.HARD, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.HARD, this.players)).setVisible(true);
     }//GEN-LAST:event_lblDificilMouseClicked
 
     private void lblSuperWagnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSuperWagnerMouseClicked
-        new TelaPartida(new MatchGame(ModalityEnum.SUPERWAGNER, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.SUPERWAGNER, this.players)).setVisible(true);
     }//GEN-LAST:event_lblSuperWagnerMouseClicked
 
     /**

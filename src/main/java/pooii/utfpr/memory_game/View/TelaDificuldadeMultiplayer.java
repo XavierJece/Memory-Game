@@ -204,8 +204,9 @@ public class TelaDificuldadeMultiplayer extends javax.swing.JFrame {
 
     private void lblCalouroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCalouroMouseClicked
         verificaNome();
-        new TelaPartida(new MatchGame(ModalityEnum.FORFRESHMEN, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.FORFRESHMEN, this.players)).setVisible(true);
     }//GEN-LAST:event_lblCalouroMouseClicked
 
     private void txtPlayer2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlayer2KeyTyped
@@ -230,26 +231,30 @@ public class TelaDificuldadeMultiplayer extends javax.swing.JFrame {
 
     private void lblFacilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFacilMouseClicked
         verificaNome();
-        new TelaPartida(new MatchGame(ModalityEnum.EASY, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.EASY, this.players)).setVisible(true);
     }//GEN-LAST:event_lblFacilMouseClicked
 
     private void lblMedioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMedioMouseClicked
         verificaNome();
-        new TelaPartida(new MatchGame(ModalityEnum.MIDDLE, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.MIDDLE, this.players)).setVisible(true);
     }//GEN-LAST:event_lblMedioMouseClicked
 
     private void lblDificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDificilMouseClicked
         verificaNome();
-        new TelaPartida(new MatchGame(ModalityEnum.HARD, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.HARD, this.players)).setVisible(true);
     }//GEN-LAST:event_lblDificilMouseClicked
 
     private void lblSuperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSuperMouseClicked
         verificaNome();
-        new TelaPartida(new MatchGame(ModalityEnum.SUPERWAGNER, this.players)).setVisible(true);
         this.setVisible(false);
+        this.telaModo.setVisible(true);
+        new TelaPartida(new MatchGame(ModalityEnum.SUPERWAGNER, this.players)).setVisible(true);
     }//GEN-LAST:event_lblSuperMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
