@@ -27,10 +27,17 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public void save(T objeto) {
-       manager.getTransaction().begin();
-       manager.persist(objeto);
-       manager.getTransaction().commit();
+    public boolean save(T objeto) {
+        try {
+            manager.getTransaction().begin();
+            manager.persist(objeto);
+            manager.getTransaction().commit();
+            
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR: " + e);
+            return false;
+        }
     }
 
     @Override
@@ -51,6 +58,17 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     }
     
     @Override
+    public T listOne(String pkName, String pkValue, Class clazz, String pkName2, String pkValue2) {
+        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE t." + pkName + " = :value1 AND t." + pkName2 + " = :value2";
+        Query query = this.manager.createQuery(jpql);
+        query.setParameter("value1", pkValue);
+        query.setParameter("value2", pkValue2);
+
+        Object obj = query.getSingleResult();
+        return (T) obj;
+    }
+    
+    @Override
     public T listOne(String pkName, String pkValue, Class clazz) {
         String jpql = "SELECT t FROM " + clazz.getTypeName() + " AS t WHERE t." + pkName + " = " + pkValue;
         Query query = this.manager.createQuery(jpql);
@@ -58,22 +76,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
         return (T) obj;
     }
     
-    /*@Override
-    public T listOne(String pkName, String pkValue, Class clazz) {
-        String jpql = "SELECT t FROM " + clazz.getTypeName() + " t WHERE " + pkName + "=" + pkValue; //Posso colocar "SELECT t FROM TB_" + ..
-        
-        try {
-            Query query = this.manager.createQuery(jpql);
-            Object obj = query.getSingleResult();
-            
-            return (T) obj;
-        } catch (Exception e) {
-            connectionHibernate.close();
-            JOptionPane.showMessageDialog(null, "ERROR: " + e);
-        }
-        
-        return null;
-    }*/
+
 
     @Override
     public List listAll(Class clazz) {
@@ -99,23 +102,25 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     
     /**Função para rerificar se o usuario tem cadastro ou não.
      *
-     * @param nome o nikcName do usuario
-     * @param senha o nikcName do usuario
+     * @param email o Email do usuario
+     * @param senha o senha do usuario
      * @return true para existe o login, false para não existe.
      */
     @Override
-    public boolean verificaLogin( String nome, String senha){
-        String jpql =  "SELECT COUNT(t) FROM Player t WHERE t.nickName = :nome AND t.pass = :senha";
-        Query query = this.manager.createQuery(jpql);
-        query.setParameter("nome", nome);
-        query.setParameter("senha", senha);
-        
-        String i = query.getSingleResult().toString();             
+    public Player verificaLogin( String email, String senha){
+        try {
+            String jpql =  "SELECT t FROM Player t WHERE t.email = :email AND t.pass = :senha";
+            Query query = this.manager.createQuery(jpql);
+            query.setParameter("email", email);
+            query.setParameter("senha", senha);
+            
+            Player p = ((query.getResultList().size() != 1) ? new Player("ErRoR") : ((Player) query.getResultList().get(0)) ); //     
 
-        if(i.equals("1")){
-            return true;
-        }else{
-            return false;
+            return p;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
         }
-    } 
+    }
+    
 }

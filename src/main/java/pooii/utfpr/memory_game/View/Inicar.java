@@ -24,25 +24,26 @@ public class Inicar {
     public static void main(String[] args) {
         
         GenericDAO<Player> playerDAO = new GenericDAOImpl<>();
-        Player p = new Player("JP");
-        playerDAO.save(p);
+//        
+        Player gamers = (Player) playerDAO.listAll(Player.class).get(0);
+//        
+////        gamers.remove(8);
+////        gamers.remove(7);
+////        gamers.remove(6);
+////        gamers.remove(5);
+////        gamers.remove(4);
+////        gamers.remove(3);
+////        gamers.remove(2);
+////        gamers.remove(1);
+//        
+//        Statistics sta = new Statistics();
+//        
+//        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
+//        
+//        TelaPartida tp = new TelaPartida(dif, gamers);
         
-        List<Player> gamers = playerDAO.listAll(Player.class);
-        
-//        gamers.remove(8);
-//        gamers.remove(7);
-//        gamers.remove(6);
-//        gamers.remove(5);
-//        gamers.remove(4);
-//        gamers.remove(3);
-//        gamers.remove(2);
-//        gamers.remove(1);
-        
-        Statistics sta = new Statistics();
-        
-        Difficulty dif = SimpleModalityFactory.createModality(ModalityEnum.HARD);
-        
-        TelaPartida tp = new TelaPartida(dif, gamers);
+        TelaDificuldadeSinglePlayer td = new TelaDificuldadeSinglePlayer(gamers);
+        td.setVisible(true);
         
     }
 }

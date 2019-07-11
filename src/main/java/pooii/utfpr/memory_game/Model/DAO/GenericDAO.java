@@ -6,6 +6,7 @@
 package pooii.utfpr.memory_game.Model.DAO;
 
 import java.util.List;
+import pooii.utfpr.memory_game.Model.VO.Player;
 
 /**
  *
@@ -13,11 +14,13 @@ import java.util.List;
  */
 public interface GenericDAO<T> {
     
-    void save(T objeto);
+    boolean save(T objeto);
     
     T listOne(String pkName, int pkValue, Class clazz);
     
     T listOne(String pkName, String pkValue, Class clazz);
+    
+    T listOne(String pkName, String pkValue, Class clazz, String pkName2, String pkValue2);
        
     List listAll(Class clazz);
     
@@ -25,6 +28,6 @@ public interface GenericDAO<T> {
     
     void delete(T objeto);
     
-    public boolean verificaLogin(String nome, String senha);
+    public Player verificaLogin(String nome, String senha);
     
 }

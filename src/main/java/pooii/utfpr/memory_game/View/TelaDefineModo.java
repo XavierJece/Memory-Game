@@ -16,15 +16,23 @@ import pooii.utfpr.memory_game.Model.VO.Player;
  */
 public class TelaDefineModo extends javax.swing.JFrame {
     private int mousePx, mousePy;
-    private String nome;
+    private Player player;
     
-    public TelaDefineModo(String nome) {
+    private TelaDificuldadeSinglePlayer telaDificuldade;
+    
+    public TelaDefineModo(Player p) {
         initComponents();
-        this.nome = nome;
-        lblNome.setText(nome);
+        
+        this.player = p;
+        lblNome.setText(this.player.getNickName());
+        
+        this.telaDificuldade = new TelaDificuldadeSinglePlayer();
     }
+    
     public TelaDefineModo() {
         initComponents();
+        
+        this.telaDificuldade = new TelaDificuldadeSinglePlayer(this.player);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,6 +47,9 @@ public class TelaDefineModo extends javax.swing.JFrame {
         lblBarra = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblSinglePlayer = new javax.swing.JLabel();
+        lblSingleMultiPlayer = new javax.swing.JLabel();
+        lblEstatisticas = new javax.swing.JLabel();
+        lblRanking = new javax.swing.JLabel();
         lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +83,16 @@ public class TelaDefineModo extends javax.swing.JFrame {
                 lblSinglePlayerMouseClicked(evt);
             }
         });
-        getContentPane().add(lblSinglePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(lblSinglePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 185, 150, 50));
+
+        lblSingleMultiPlayer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSingleMultiPlayerMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblSingleMultiPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 185, 150, 50));
+        getContentPane().add(lblEstatisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 150, 50));
+        getContentPane().add(lblRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 150, 50));
 
         lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/TelaDefineModo.jpg"))); // NOI18N
         getContentPane().add(lblFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
@@ -100,8 +120,12 @@ public class TelaDefineModo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblBarraMousePressed
 
     private void lblSinglePlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSinglePlayerMouseClicked
-        
+        this.telaDificuldade.setVisible(true);
     }//GEN-LAST:event_lblSinglePlayerMouseClicked
+
+    private void lblSingleMultiPlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSingleMultiPlayerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSingleMultiPlayerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -140,9 +164,12 @@ public class TelaDefineModo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblBarra;
+    private javax.swing.JLabel lblEstatisticas;
     private javax.swing.JLabel lblFechar;
     private javax.swing.JLabel lblFundo;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblRanking;
+    private javax.swing.JLabel lblSingleMultiPlayer;
     private javax.swing.JLabel lblSinglePlayer;
     // End of variables declaration//GEN-END:variables
 }

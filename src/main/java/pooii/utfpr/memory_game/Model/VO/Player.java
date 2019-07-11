@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import pooii.utfpr.memory_game.Control.MatchGame;
+import pooii.utfpr.memory_game.Model.RN.GenericRN;
 
 @Entity // Cria uma tabela no meu Banco de Dadoss
 

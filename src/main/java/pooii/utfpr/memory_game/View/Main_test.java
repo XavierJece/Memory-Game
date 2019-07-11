@@ -29,33 +29,33 @@ public class Main_test {
         //PlayerRN playerRN= new PlayerRN();
         
 //        MatchGame match = new MatchGame();
-//        Player player1 = new Player("Giuvane");
+        Player player1 = new Player("Giuvane");
 //        Player player2 = new Player("Goku");
 //        Player player3 = new Player("Vidotto");
 //        Player player4 = new Player("goku");
 //        player4.setEmail("goku@hotail.com");
 //        player4.setDateRegister(LocalDate.now());
 //                
-//        List<Player> players = new ArrayList<Player>();
-//        players.add(player1);
+        List<Player> players = new ArrayList<Player>();
+        players.add(player1);
 //        players.add(player2);
 //        players.add(player3);
          
-         GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
-//        
-        List<Player> players2 = genericDAOPlayer.listAll(Player.class);
-        players2.remove(2);
-        players2.remove(1);
+//         GenericDAO<Player> genericDAOPlayer = new GenericDAOImpl<Player>();
+         
+//        List<Player> players2 = genericDAOPlayer.listAll(Player.class);
+//        players2.remove(2);
+//        players2.remove(1);
 //        players2.add(player4);
 //        players2.add(player1);
 //        
-        MatchGame mg1 = new MatchGame(ModalityEnum.MIDDLE, players2);
-        mg1.getStatidtics().get(0).setBiggerSequence(10);
-        mg1.getStatidtics().get(0).setPontuacao(520);
-        mg1.getStatidtics().get(0).setQuantidadeJogadas(102);
-        mg1.getStatidtics().get(1).setBiggerSequence(52);
-        mg1.getStatidtics().get(1).setPontuacao(426);
-        mg1.getStatidtics().get(1).setQuantidadeJogadas(742);
+//        MatchGame mg1 = new MatchGame(ModalityEnum.MIDDLE, players2);
+//        mg1.getStatidtics().get(0).setBiggerSequence(10);
+//        mg1.getStatidtics().get(0).setPontuacao(520);
+//        mg1.getStatidtics().get(0).setQuantidadeJogadas(102);
+//        mg1.getStatidtics().get(1).setBiggerSequence(52);
+//        mg1.getStatidtics().get(1).setPontuacao(426);
+//        mg1.getStatidtics().get(1).setQuantidadeJogadas(742);
 
         
 //        
@@ -63,7 +63,7 @@ public class Main_test {
 //        
 //        players.add(player4);
 //        
-//        MatchGame mg3 = new MatchGame(ModalityEnum.EASY, players);
+        MatchGame mg3 = new MatchGame(ModalityEnum.EASY, players);
         
         
         //Statistics sta = new Statistics();
@@ -78,11 +78,11 @@ public class Main_test {
 //        genericDAOPlayer.save(player3);
 //        genericDAOPlayer.save(player4);
         
-        genericDAOMathGame.save(mg1);
+//        genericDAOMathGame.save(mg1);
         //genericDAOMathGame.delete(mg1);
 //        genericDAOMathGame.save(mg2);
         //playerRN.save(player);
-//        genericDAOMathGame.save(mg3);
+        genericDAOMathGame.save(mg3);
         
         
         
@@ -106,8 +106,9 @@ public class Main_test {
         //Query query = manager.createQuery("SELECT c FROM Player c"); 
         //List<Player> jogadores = query.getResultList();
         
-        connectionHibernate.close();
+//        connectionHibernate.close();
        // manager.close();
        // factory.close();
+        
      }
 }

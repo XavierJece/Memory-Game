@@ -35,6 +35,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         lblLogin = new javax.swing.JLabel();
         lblBarra = new javax.swing.JLabel();
         lblFechar = new javax.swing.JLabel();
+        lblJogoRapido = new javax.swing.JLabel();
         lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,6 +48,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         txtEmail.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         txtEmail.setBorder(null);
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 240, 40));
 
         txtSenha.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -58,8 +64,14 @@ public class TelaCadastro extends javax.swing.JFrame {
                 lblCadastrarMouseClicked(evt);
             }
         });
-        getContentPane().add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 110, 20));
-        getContentPane().add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, -1, -1));
+        getContentPane().add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 415, 117, 30));
+
+        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLoginMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 455, 80, 10));
         getContentPane().add(lblBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 20));
 
         lblFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,9 +80,10 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 20));
+        getContentPane().add(lblJogoRapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, 30));
 
         lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/telaCadastro.jpg"))); // NOI18N
-        getContentPane().add(lblFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
+        getContentPane().add(lblFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 470));
 
         pack();
         setLocationRelativeTo(null);
@@ -79,32 +92,45 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void lblCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastrarMouseClicked
         String senha = new String(this.txtSenha.getPassword());
         
-        if(txtEmail.getText().length() < 10){
-            JOptionPane.showMessageDialog(rootPane, "O email deve ter mais que 10 caracteres");
-        }else if(txtNome.getText().length() < 3){
-            JOptionPane.showMessageDialog(rootPane, "O nome deve ter mais que 3 caracteres");
-        }else if(senha.length() < 7){
-            JOptionPane.showMessageDialog(rootPane, "A senha deve ter mais que 7 caracteres");
-        }else{
-        
-            GenericRN<Player> playerDAO = new GenericRN<>();
+//        if(txtEmail.getText().length() < 10){
+////            JOptionPane.showMessageDialog(rootPane, "O email deve ter mais que 10 caracteres");
+//        }else if(txtNome.getText().length() < 3){
+////            JOptionPane.showMessageDialog(rootPane, "O nome deve ter mais que 3 caracteres");
+//        }else if(senha.length() < 7){
+////            JOptionPane.showMessageDialog(rootPane, "A senha deve ter mais que 7 caracteres");
+//        }else{
+//        
+//        }
+    
+        GenericRN<Player> playerDAO = new GenericRN<>();
 
-            Player player = new Player();
+        Player player = new Player();
 
-            player.setNickName(txtNome.getText());
-            player.setPass(senha);
-            player.setEmail(txtEmail.getText());
+        player.setNickName(txtNome.getText());
+        player.setPass(senha);
+        player.setEmail(txtEmail.getText());
 
-            playerDAO.save(player);
+        if(playerDAO.cadastro(player)){
             JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso!");
             this.dispose();
-            new TelaLogin().setVisible(true);
+            new TelaDefineModo(player).setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Dados Invalidos :`(", "ERRO :(", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_lblCadastrarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         System.exit(0);
     }//GEN-LAST:event_lblFecharMouseClicked
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
+        this.dispose();
+        new TelaLogin().setVisible(true);
+    }//GEN-LAST:event_lblLoginMouseClicked
 
     
     
@@ -148,6 +174,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblCadastrar;
     private javax.swing.JLabel lblFechar;
     private javax.swing.JLabel lblFundo;
+    private javax.swing.JLabel lblJogoRapido;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;

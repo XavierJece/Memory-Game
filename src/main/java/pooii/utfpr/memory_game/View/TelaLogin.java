@@ -133,18 +133,20 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCloseMouseClicked
 
     private void lblEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEntrarMouseClicked
-        GenericRN<Player> playerDAO = new GenericRN<>();
+        GenericRN<Player> playerRN = new GenericRN<>();
         
         String usuario = this.txtUsuario.getText();
         String senha = new String(this.txtSenha.getPassword());
         
-        if(playerDAO.verificaLogin(usuario, senha)){
+        Player p = playerRN.verificaLogin(usuario, senha);
+        
+        if(!p.getNickName().equals("ErRoR")){
+            
             JOptionPane.showMessageDialog(null, "Entrou!");
             this.dispose();
-            TelaDefineModo tela = new TelaDefineModo(usuario);
-            tela.setVisible(true);
+            new TelaDefineModo(p).setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(null, "Nem vem!");
+            JOptionPane.showMessageDialog(null, "NEM VEM", "ERRO :(", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_lblEntrarMouseClicked
