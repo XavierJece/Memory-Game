@@ -5,6 +5,7 @@
  */
 package pooii.utfpr.memory_game.View;
 
+import com.sun.org.glassfish.external.statistics.Statistic;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,11 +27,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
+import pooii.utfpr.memory_game.Control.MatchGame;
 import pooii.utfpr.memory_game.Control.Regras.ControleBotoesSelecionados;
 import pooii.utfpr.memory_game.Control.Regras.EstadoBotoes;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAO;
+import pooii.utfpr.memory_game.Model.DAO.GenericDAOImpl;
 import pooii.utfpr.memory_game.Model.VO.Piece;
 import pooii.utfpr.memory_game.Model.VO.PieceEnum;
 import pooii.utfpr.memory_game.Model.VO.Player;
+import pooii.utfpr.memory_game.Model.VO.Statistics;
 import pooii.utfpr.memory_game.Model.VO.modalidades.Difficulty;
 
 /**
@@ -54,6 +60,7 @@ public class TelaPartida extends JFrame{
     private int quantidadeColumn;
     private int valorAcerto;
     private List<Player> gamers;
+    private MatchGame mg;
     
     /*Atritutos => Conpodentes de Tela*/
     private List<JLabel> lbljogadores;
@@ -70,16 +77,17 @@ public class TelaPartida extends JFrame{
     ActionListener acoesBtn;
     
     /*Construtor*/
-    public TelaPartida(Difficulty difficult, List<Player> gamers){
-        super("Partida da modalidade " + difficult.getName());
+    public TelaPartida(MatchGame mg){
+        super("Partida da modalidade " + mg.getModallity().getName());
         
-        this.QUANTIDADE_LIMITE_JOGADAS = difficult.getQuatityCombination();
-        this.dimensaoBtn = difficult.getDimensionPiece();
-        this.quantidadeImg = difficult.getQuantityPiece();
-        this.quantidadeConminacao = difficult.getQuatityCombination();
-        this.quantidadeColumn = difficult.getQuatityColumn();
-        this.valorAcerto = difficult.getValorAcerto();
-        this.gamers = gamers;
+        this.QUANTIDADE_LIMITE_JOGADAS = mg.getModallity().getQuatityCombination();
+        this.dimensaoBtn = mg.getModallity().getDimensionPiece();
+        this.quantidadeImg = mg.getModallity().getQuantityPiece();
+        this.quantidadeConminacao = mg.getModallity().getQuatityCombination();
+        this.quantidadeColumn = mg.getModallity().getQuatityColumn();
+        this.valorAcerto = mg.getModallity().getValorAcerto();
+        this.gamers = mg.getGamers();
+        this.mg = mg;
         this.comPlayer = Boolean.TRUE;
         
         /*Instacionando Lista Controle*/
@@ -99,30 +107,30 @@ public class TelaPartida extends JFrame{
         
     }
     
-    public TelaPartida(Difficulty difficult){
-        super("Partida da modalidade " + difficult.getName());
-        
-        this.QUANTIDADE_LIMITE_JOGADAS = difficult.getQuatityCombination();
-        this.dimensaoBtn = difficult.getDimensionPiece();
-        this.quantidadeImg = difficult.getQuantityPiece();
-        this.quantidadeConminacao = difficult.getQuatityCombination();
-        this.quantidadeColumn = difficult.getQuatityColumn();
-        this.valorAcerto = difficult.getValorAcerto();
-        this.comPlayer = Boolean.FALSE;
-        
-        /*Instacionando Lista Controle*/
-        this.listaControle = new ArrayList<>();
-        this.listaControleSelecionados = new ArrayList<>();
-        
-        /*Para conseguir Img*/
-        this.piece = new Piece();
-        
-        /*Criando ação no botão*/
-         this.acoesBtn = virarPiece();
-        
-        
-        definirLayoutTela();
-    }
+//    public TelaPartida(MatchGame mg){
+//        super("Partida da modalidade " + mg.getModallity().getName());
+//        
+//        this.QUANTIDADE_LIMITE_JOGADAS = mg.getModallity().getQuatityCombination();
+//        this.dimensaoBtn = mg.getModallity().getDimensionPiece();
+//        this.quantidadeImg = mg.getModallity().getQuantityPiece();
+//        this.quantidadeConminacao = mg.getModallity().getQuatityCombination();
+//        this.quantidadeColumn = mg.getModallity().getQuatityColumn();
+//        this.valorAcerto = mg.getModallity().getValorAcerto();
+//        this.comPlayer = Boolean.FALSE;
+//        
+//        /*Instacionando Lista Controle*/
+//        this.listaControle = new ArrayList<>();
+//        this.listaControleSelecionados = new ArrayList<>();
+//        
+//        /*Para conseguir Img*/
+//        this.piece = new Piece();
+//        
+//        /*Criando ação no botão*/
+//         this.acoesBtn = virarPiece();
+//        
+//        
+//        definirLayoutTela();
+//    }
     
     /*Funções de configuração de Layout*/
     private void configuracaoBotoes(){
@@ -289,7 +297,7 @@ public class TelaPartida extends JFrame{
 
                 this.lbljogadores.add(lblJogador);
 
-                lblJogador = new JLabel(gamers.get(indiceJogador).getPontuacao() + " Pontos" );
+                lblJogador = new JLabel(this.mg.getStatidtics().get(indiceJogador).getPontuacao() + " Pontos");
                 lblJogador.setFont(fontJogador);
                 lblJogador.setBounds((this.painelPiece.getWidth() + 150 + this.ESPACAMENTO_BUTTON), (i * this.ESPACAMENTO_BUTTON + 25), 150, 25);
 
@@ -327,11 +335,20 @@ public class TelaPartida extends JFrame{
         this.gamers.get(0).setJogando(1);
     }
     
-private void pontuacao(){
+    
+    private void pontuacao(){
+        
         sequencia++;
-        gamers.get(indiceJogador).setPontuacao(this.valorAcerto * this.sequencia);
-        this.lblpontuacao.get(indiceJogador).setText(gamers.get(indiceJogador).getPontuacao() + " Pontos");
+        
+        if(this.mg.getStatidtics().get(indiceJogador).getBiggerSequence() < sequencia){
+            this.mg.getStatidtics().get(indiceJogador).setBiggerSequence(sequencia);
+        }
+        
+        this.mg.getStatidtics().get(indiceJogador).setPontuacao(this.valorAcerto * this.sequencia);
+        this.lblpontuacao.get(indiceJogador).setText(this.mg.getStatidtics().get(indiceJogador).getPontuacao() + " Pontos");
     }
+    
+    
     
     private void definirJogador(){
         int i = 0;
@@ -347,6 +364,7 @@ private void pontuacao(){
             i++;
         }
     }
+    
     
     private void alterandoJogador(){
         gamers.get(indiceJogador).setJogando(0);
@@ -365,6 +383,7 @@ private void pontuacao(){
         ActionListener acao = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 JButton btn = ((JButton) e.getSource());
                 
 //                System.out.println("Jogadas: " + quantidadejogadas);
@@ -381,6 +400,7 @@ private void pontuacao(){
                         }
                         
                         if( quantidadejogadas >= QUANTIDADE_LIMITE_JOGADAS ){
+                            mg.getStatidtics().get(indiceJogador).setQuantidadeJogadas();
                             //Se os pares foram seleceionadas 
                             
                             if(listaControleSelecionados.size() > 1){
@@ -410,6 +430,7 @@ private void pontuacao(){
     }
     
     private void endGame(){
+        
         int i = 0, j = 0;
         for(ControleBotoesSelecionados cont : listaControle){
             i++;
@@ -419,7 +440,7 @@ private void pontuacao(){
         }
         
          for(i=1; i < gamers.size(); i++){
-            if(gamers.get(i).getPontuacao() > gamers.get(j).getPontuacao()){
+            if(this.mg.getStatidtics().get(i).getPontuacao() > this.mg.getStatidtics().get(j).getPontuacao()){
                 j = i;
             }
         }
@@ -428,11 +449,16 @@ private void pontuacao(){
                 + "<font size=\"6\"><center>"
                 + "<b>Partida finalizada </b><br>"
                 + " O <b>" + gamers.get(j).getNickName() + "</b> Foi o CAMPEÃO <br>"
-                + "Somando " + gamers.get(j).getPontuacao() + " Pontos."
+                + "Somando " + this.mg.getStatidtics().get(indiceJogador).getPontuacao() + " Pontos"
                 + "</center></font></body></html>";
         
        
         JOptionPane.showMessageDialog(null, msg, "Partida",0,piece.ImgConfig("youWin", 100));
+        
+        GenericDAO<MatchGame> mgDAO = new GenericDAOImpl<MatchGame>();
+        
+        mgDAO.save(mg);
+        
         
     }
     

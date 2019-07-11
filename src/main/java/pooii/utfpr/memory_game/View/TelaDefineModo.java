@@ -26,7 +26,7 @@ public class TelaDefineModo extends javax.swing.JFrame {
         this.player = p;
         lblNome.setText(this.player.getNickName());
         
-        this.telaDificuldade = new TelaDificuldadeSinglePlayer();
+        this.telaDificuldade = new TelaDificuldadeSinglePlayer(player);
     }
     
     public TelaDefineModo() {
@@ -120,6 +120,7 @@ public class TelaDefineModo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblBarraMousePressed
 
     private void lblSinglePlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSinglePlayerMouseClicked
+        this.dispose();
         this.telaDificuldade.setVisible(true);
     }//GEN-LAST:event_lblSinglePlayerMouseClicked
 

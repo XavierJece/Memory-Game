@@ -21,13 +21,13 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
     /*Atributos*/
     private int mousePx, mousePy;
     private MatchGame mg = null;
-    private List<Player> p;
+    private List<Player> players;
     
     public TelaDificuldadeSinglePlayer(Player p) {
         initComponents();
         
-        this.p = new ArrayList<>();
-        this.p.add(p);
+        this.players = new ArrayList<>();
+        this.players.add(p);
         
     }
     
@@ -144,27 +144,27 @@ public class TelaDificuldadeSinglePlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblCalourosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCalourosMouseClicked
-        mg = new MatchGame(ModalityEnum.FORFRESHMEN, this.p);
+        new TelaPartida(new MatchGame(ModalityEnum.FORFRESHMEN, this.players)).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblCalourosMouseClicked
 
     private void lblMedioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMedioMouseClicked
-        mg = new MatchGame(ModalityEnum.MIDDLE, this.p);
+        new TelaPartida(new MatchGame(ModalityEnum.MIDDLE, this.players)).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblMedioMouseClicked
 
     private void lblFacilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFacilMouseClicked
-        mg = new MatchGame(ModalityEnum.EASY, this.p);
+        new TelaPartida(new MatchGame(ModalityEnum.EASY, this.players)).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblFacilMouseClicked
 
     private void lblDificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDificilMouseClicked
-        mg = new MatchGame(ModalityEnum.HARD, this.p);
+        new TelaPartida(new MatchGame(ModalityEnum.HARD, this.players)).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblDificilMouseClicked
 
     private void lblSuperWagnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSuperWagnerMouseClicked
-        mg = new MatchGame(ModalityEnum.SUPERWAGNER, this.p);
+        new TelaPartida(new MatchGame(ModalityEnum.SUPERWAGNER, this.players)).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblSuperWagnerMouseClicked
 

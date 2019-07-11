@@ -58,8 +58,8 @@ public class MatchGame {
     
     private boolean mutiplayer;
     
-    @Transient
-    TelaPartida tp;
+//    @Transient
+//    TelaPartida tp;
     
     //Constructor
     
@@ -76,7 +76,7 @@ public class MatchGame {
     public MatchGame(ModalityEnum mode) {
        this.difficulty = SimpleModalityFactory.createModality(mode);
        
-       this.tp = new TelaPartida(this.difficulty);
+//       this.tp = new TelaPartida(this);
         
     }
     
@@ -90,6 +90,7 @@ public class MatchGame {
     */
     public MatchGame(ModalityEnum mode, List<Player> gamers) {
         
+
         this.mutiplayer = ((gamers.size() == 1) ? Boolean.FALSE : Boolean.TRUE);
         
 //        if(gamers.size() == 1){
@@ -106,8 +107,9 @@ public class MatchGame {
         this.gamers = gamers;
         
         this.difficulty = SimpleModalityFactory.createModality(mode); 
-        
-        this.tp = new TelaPartida(this.difficulty, this.gamers);
+        System.out.println("Chegou aqui");
+//        this.tp = new TelaPartida(this.);
+        System.out.println("Chegou aqui2");
         
     }
     

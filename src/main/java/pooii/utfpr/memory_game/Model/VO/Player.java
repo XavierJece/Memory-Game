@@ -34,12 +34,6 @@ public class Player {
     @Transient
     private int jogando;
     
-    @Transient
-    private int pontuacao;
-        
-//    @ManyToOne(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name = "matchGame", nullable = true, foreignKey = @ForeignKey(name = "matchGame_fk"))
-//    private MatchGame matchGame;
 
     public Player(Long id, String email, String pass, String nickName, LocalDate dateRegister) {
         this.id_player = id;
@@ -48,17 +42,17 @@ public class Player {
         this.nickName = nickName;
         this.dateRegister = dateRegister;
         this.jogando = 0;
-        this.pontuacao = 0;
+
     }
 
     public Player(String name) {
         this.nickName = name;
         this.jogando = 0;
-        this.pontuacao = 0;
+
     }
     
     public Player() { //Precisamos de um construtor vazio para funcionar a busca do hibernate
-       this.pontuacao = 0;
+
     }
 
     public String updaterNickName(String newName) {
@@ -113,12 +107,5 @@ public class Player {
         this.jogando = jogando;
     }
 
-    public int getPontuacao() {
-        return pontuacao;
-    }
 
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao + this.pontuacao;
-    }
-    
 }
