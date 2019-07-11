@@ -33,10 +33,6 @@ public class Statistics {
     private int pontuacao;
     
     private int quantidadeJogadas;
-
-    private LocalDate beginTime;
-    private LocalDate endTime;
-
     
     /*Contrutor*/
     public Statistics() {
@@ -55,10 +51,7 @@ public class Statistics {
 
 
     /*My Functions*/
-    public Duration getTime() {
-        
-        return Duration.between(this.beginTime, this.endTime);
-    }
+
     
     /*Gets and Sets*/
     public int getBiggerSequence() {
@@ -67,22 +60,6 @@ public class Statistics {
 
     public void setBiggerSequence(int biggerSequence) {
         this.biggerSequence = biggerSequence;
-    }
-
-    public LocalDate getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(LocalDate beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public LocalDate getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDate endTime) {
-        this.endTime = endTime;
     }
 
     public long getId() {
